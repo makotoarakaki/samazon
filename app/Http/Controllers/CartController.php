@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,6 @@ class CartController extends Controller
     public function index()
     {
         $cart = Cart::instance(Auth::user()->id)->content();
-
         $total = 0;
 
         foreach ($cart as $c) {
