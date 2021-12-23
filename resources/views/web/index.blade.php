@@ -13,7 +13,7 @@
             <div class="col-4">
                 <a href="/products/{{ $recommend_product->id }}">
                 @if ($recommend_product->image !== "")
-                    <img src="{{ asset('storage/products/'.$recommend_product->image) }}" class="img-thumbnail">
+                    <img src="{{ asset('public/storage/products/'.$recommend_product->image) }}" class="img-thumbnail">
                 @else
                     <img src="{{ asset('img/dummy.png')}}" class="img-thumbnail">
                 @endif
