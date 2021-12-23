@@ -5,7 +5,11 @@
 <div class="d-flex justify-content-center">
     <div class="row w-75">
         <div class="col-5 offset-1">
-            <img src="{{ asset('img/man.png')}}" class="w-100 img-fuild">
+        @if ($product->image !== null)
+                <img src="{{ asset('public/storage/products/'.$product->image) }}" class="w-100 img-fluid">
+            @else
+               <img src="{{ asset('img/dummy.png')}}" class="w-100 img-fuild">
+            @endif
         </div>
         <div class="col">
             <div class="d-flex flex-column">
@@ -22,11 +26,12 @@
                 <hr>
             </div>
             @auth
-            <form method="POST" class="m-3 align-items-end">
+            <form method="POST" action="{{route('carts.store')}}" class="m-3 align-items-end">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" value="{{$product->id}}">
                 <input type="hidden" name="name" value="{{$product->name}}">
                 <input type="hidden" name="price" value="{{$product->price}}">
+                <input type="hidden" name="carriage" value="{{$product->carriage_flag}}">
                 <div class="form-group row">
                     <label for="quantity" class="col-sm-2 col-form-label">数量</label>
                     <div class="col-sm-10">
@@ -68,7 +73,9 @@
             <div class="row">
                 @foreach($reviews as $review)
                 <div class="offset-md-5 col-md-5">
+                    <h3 class="review-score-color">{{ str_repeat('★', $review->score) }}</h3>
                     <p class="h3">{{$review->content}}</p>
+                    <h4>{{$review->user->name}}</h4>
                     <label>{{$review->created_at}}</label>
                 </div>
                 @endforeach
@@ -79,6 +86,15 @@
                 <div class="offset-md-5 col-md-5">
                     <form method="POST" action="/products/{{ $product->id }}/reviews">
                         {{ csrf_field() }}
+                        <h4>評価</h4>
+                        <select name="score" class="form-control m-2 review-score-color">
+                            <option value="5" class="review-score-color">★★★★★</option>
+                            <option value="4" class="review-score-color">★★★★</option>
+                            <option value="3" class="review-score-color">★★★</option>
+                            <option value="2" class="review-score-color">★★</option>
+                            <option value="1" class="review-score-color">★</option>
+                        </select>
+                        <h4>レビュー内容</h4>
                         <textarea name="content" class="form-control m-2"></textarea>
                         <button type="submit" class="btn samazon-submit-button ml-2">レビューを追加</button>
                     </form>
