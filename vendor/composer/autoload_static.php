@@ -95,6 +95,7 @@ class ComposerStaticInitb6d8025872988c131e58c99b5a80f4f4
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
+            'Payjp\\' => 6,
         ),
         'O' => 
         array (
@@ -344,6 +345,10 @@ class ComposerStaticInitb6d8025872988c131e58c99b5a80f4f4
         'PhpOffice\\PhpSpreadsheet\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
+        ),
+        'Payjp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/payjp/payjp-php/lib',
         ),
         'Overtrue\\LaravelFavorite\\' => 
         array (
@@ -3442,6 +3447,39 @@ class ComposerStaticInitb6d8025872988c131e58c99b5a80f4f4
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'Payjp\\Account' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Account.php',
+        'Payjp\\ApiRequestor' => __DIR__ . '/..' . '/payjp/payjp-php/lib/ApiRequestor.php',
+        'Payjp\\ApiResource' => __DIR__ . '/..' . '/payjp/payjp-php/lib/ApiResource.php',
+        'Payjp\\ApplicationUrl' => __DIR__ . '/..' . '/payjp/payjp-php/lib/ApplicationUrl.php',
+        'Payjp\\AttachedObject' => __DIR__ . '/..' . '/payjp/payjp-php/lib/AttachedObject.php',
+        'Payjp\\Card' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Card.php',
+        'Payjp\\Charge' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Charge.php',
+        'Payjp\\Collection' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Collection.php',
+        'Payjp\\Customer' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Customer.php',
+        'Payjp\\Error\\Api' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Error/Api.php',
+        'Payjp\\Error\\ApiConnection' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Error/ApiConnection.php',
+        'Payjp\\Error\\Authentication' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Error/Authentication.php',
+        'Payjp\\Error\\Base' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Error/Base.php',
+        'Payjp\\Error\\Card' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Error/Card.php',
+        'Payjp\\Error\\InvalidRequest' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Error/InvalidRequest.php',
+        'Payjp\\Error\\RateLimit' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Error/RateLimit.php',
+        'Payjp\\Event' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Event.php',
+        'Payjp\\ExternalAccount' => __DIR__ . '/..' . '/payjp/payjp-php/lib/ExternalAccount.php',
+        'Payjp\\HttpClient\\ClientInterface' => __DIR__ . '/..' . '/payjp/payjp-php/lib/HttpClient/ClientInterface.php',
+        'Payjp\\HttpClient\\CurlClient' => __DIR__ . '/..' . '/payjp/payjp-php/lib/HttpClient/CurlClient.php',
+        'Payjp\\Logger\\DefaultLogger' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Logger/DefaultLogger.php',
+        'Payjp\\Logger\\LoggerInterface' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Logger/LoggerInterface.php',
+        'Payjp\\Payjp' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Payjp.php',
+        'Payjp\\PayjpObject' => __DIR__ . '/..' . '/payjp/payjp-php/lib/PayjpObject.php',
+        'Payjp\\Plan' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Plan.php',
+        'Payjp\\Subscription' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Subscription.php',
+        'Payjp\\Tenant' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Tenant.php',
+        'Payjp\\TenantTransfer' => __DIR__ . '/..' . '/payjp/payjp-php/lib/TenantTransfer.php',
+        'Payjp\\Token' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Token.php',
+        'Payjp\\Transfer' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Transfer.php',
+        'Payjp\\Util\\RequestOptions' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Util/RequestOptions.php',
+        'Payjp\\Util\\Set' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Util/Set.php',
+        'Payjp\\Util\\Util' => __DIR__ . '/..' . '/payjp/payjp-php/lib/Util/Util.php',
         'PharIo\\Manifest\\Application' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Application.php',
         'PharIo\\Manifest\\ApplicationName' => __DIR__ . '/..' . '/phar-io/manifest/src/values/ApplicationName.php',
         'PharIo\\Manifest\\Author' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Author.php',

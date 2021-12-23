@@ -154,7 +154,7 @@ class UserController extends Controller
 
    public function register_card(Request $request)
    {
-        $user = Auth::user();
+        $user = User::find(Auth::user()->id);
  
         $pay_jp_secret = env('PAYJP_SECRET_KEY');
         \Payjp\Payjp::setApiKey($pay_jp_secret);
