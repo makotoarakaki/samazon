@@ -35,6 +35,16 @@
                     <h3 class="w-100 mt-4">￥{{$product->qty * $product->price}}</h3>
                 @endif            
             </div>
+            <div class="col-md-2">
+                <a href="/users/carts/{{ $product->rowId }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dashboard-delete-link">
+                    <i class="fas fa-trash-alt w-100 mt-4 text-danger"></i>
+                </a>
+
+                <form id="logout-form" action="/users/carts/{{ $product->rowId }}" method="POST" style="display: none;">
+                    @csrf
+                    <input type="hidden" name="_method" value="DELETE">
+                </form>
+            </div>
             @endforeach            
         </div>
 

@@ -152,4 +152,12 @@ class CartController extends Controller
  
         return redirect()->route('carts.index');
     }
+
+    public function delete($rowId)
+    {
+        Cart::remove($rowId);
+
+        return redirect()->route('carts.index');
+    }
+
 }

@@ -10,7 +10,7 @@
         <h1>おすすめ商品</h1>
         <div class="row">
             @foreach ($recommend_products as $recommend_product)
-            <div class="col-4">
+            <div class="col-3">
                 <a href="/products/{{ $recommend_product->id }}">
                 @if ($recommend_product->image !== "")
                     <img src="{{ asset('public/storage/products/'.$recommend_product->image) }}" class="img-thumbnail">
