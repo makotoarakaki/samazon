@@ -155,7 +155,7 @@ class CartController extends Controller
 
     public function delete($rowId)
     {
-        Cart::remove($rowId);
+        Cart::instance(Auth::user()->id)->remove($rowId);
 
         return redirect()->route('carts.index');
     }
