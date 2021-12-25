@@ -136,7 +136,10 @@ class CartController extends Controller
         \Payjp\Payjp::setApiKey($pay_jp_secret);
  
         $user = Auth::user();
- 
+
+        if(empty($user->token)) {
+            return redirect()->route('mypage.register_card');
+        }
         $res = \Payjp\Charge::create(
             [
                 "customer" => $user->token,
