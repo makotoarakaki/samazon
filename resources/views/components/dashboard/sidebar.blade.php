@@ -27,7 +27,12 @@
         <label class="samazon-sidebar-category-label">
             <a href="/dashboard/users">顧客一覧</a>
         </label>
-
+    </div>
+    <h2>イベント管理</h2>
+    <div class="d-flex flex-column">
+        <label class="samazon-sidebar-category-label">
+            <a href="/dashboard/events">イベント一覧</a>
+        </label>
     </div>
 
     <h2>その他</h2>

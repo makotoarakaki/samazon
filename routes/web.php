@@ -12,12 +12,12 @@
 */
 Route::get('/', 'WebController@index');
 
-Route::get('users/carts', 'CartController@index')->name('carts.index');
+Route::get('users/carts', 'CartController@index')->name('carts.index')->middleware('auth:admins');
 
-Route::post('users/carts', 'CartController@store')->name('carts.store');
+Route::post('users/carts', 'CartController@store')->name('carts.store')->middleware('auth:admins');
 
-Route::delete('users/carts', 'CartController@destroy')->name('carts.destroy');
-Route::delete('users/carts/{rowId}', 'CartController@delete');
+Route::delete('users/carts', 'CartController@destroy')->name('carts.destroy')->middleware('auth:admins');
+Route::delete('users/carts/{rowId}', 'CartController@delete')->middleware('auth:admins');
 
 Route::get('users/mypage', 'UserController@mypage')->name('mypage');
 Route::get('users/mypage/edit', 'UserController@edit')->name('mypage.edit');
@@ -54,4 +54,5 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
      Route::get('orders', 'Dashboard\OrderController@index')->middleware('auth:admins');
      Route::get('products/import/csv', 'Dashboard\ProductController@import')->name('products.import_csv')->middleware('auth:admins');
      Route::post('products/import/csv', 'Dashboard\ProductController@import_csv')->middleware('auth:admins');
+     Route::resource('events', 'Dashboard\EventController')->middleware('auth:admins');
 });
