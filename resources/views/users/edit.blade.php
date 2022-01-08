@@ -69,32 +69,6 @@
 
                 <hr>
 
-                <div class="form-group">
-                    <div class="d-flex justify-content-between">
-                        <label for="phone" class="text-md-left samazon-edit-user-info-label">電話番号</label>
-                        <span onclick="switchEditUserInfo('.userPhone', '.editUserPhone', 'userPhoneEditLabel');" class="userPhoneEditLabel user-edit-label">
-                            編集
-                        </span>
-                    </div>
-                    <div class="collapse show userPhone">
-                        <h1 class="samazon-edit-user-info-value">{{ $user->phone }}</h1>
-                    </div>
-                    <div class="collapse editUserPhone">
-                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $user->phone }}" required autocomplete="phone" autofocus placeholder="XXX-XXXX-XXXX">
-
-                        <button type="submit" class="btn samazon-submit-button mt-3 w-25">
-                            保存
-                        </button>
-
-                        @error('phone')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>電話番号を入力してください</strong>
-                        </span>
-                        @enderror
-                    </div>
-                </div>
-
-                <hr>
             </form>
             <div class="d-flex justify-content-end">
                 <form method="POST" action="{{ route('mypage.destroy') }}">
