@@ -3,6 +3,16 @@
 @section('content')
 <div class="container d-flex justify-content-center mt-3">
     <div class="w-75">
+        @if ($errors->any())
+        <ul id = "error" class="error">
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger col-5">
+                <li>{{ $error }}</li>
+            </div>
+        
+            @endforeach
+        </ul>
+        @endif
         <h1>ショッピングカート</h1>
 
         <div class="row">

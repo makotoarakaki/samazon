@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use App\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -117,6 +116,11 @@ class CartController extends Controller
             $qty_total += $c->qty;
         }
 
+        if ($price_total === 0) {
+            $error[] = "商品をカートに追加してください。";
+            return redirect()->back()->withInput()->withErrors($error);
+        }
+
         Cart::instance(Auth::user()->id)->store($count);
  
         DB::table('shoppingcart')->where('instance', Auth::user()->id)
@@ -149,7 +153,11 @@ class CartController extends Controller
         );
  
         Cart::instance(Auth::user()->id)->destroy();
- 
+
+        // お客様への購入メール送信
+        $purchase_mail = app()->make('App\Http\Controllers\PurchaseMailController');
+        $purchase_mail->purchas();
+
         return redirect()->route('carts.index');
     }
 

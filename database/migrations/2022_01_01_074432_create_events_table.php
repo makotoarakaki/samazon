@@ -29,6 +29,7 @@ class CreateEventsTable extends Migration
             $table->string('ntc_email1');
             $table->string('ntc_email2')->nullable();
             $table->string('ntc_email3')->nullable();
+            $table->integer('after_mail_flg'); // 後からメール送信フラグ
             $table->timestamps();
         });
     }
