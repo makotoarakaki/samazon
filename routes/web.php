@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'WebController@index');
+Route::get('/', function () {
+     return view('welcome');
+ });
+//Route::get('/', 'WebController@index');
 
 Route::get('users/carts', 'CartController@index')->name('carts.index');
 
@@ -56,3 +59,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
      Route::post('products/import/csv', 'Dashboard\ProductController@import_csv')->middleware('auth:admins');
      Route::resource('events', 'Dashboard\EventController')->middleware('auth:admins');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
