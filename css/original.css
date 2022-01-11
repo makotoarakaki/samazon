@@ -252,3 +252,118 @@
   border-radius: 2px;
   background-color: #d94b0e;
 }
+
+.samazon-event-title {
+  padding: 1rem 2rem;
+  font-family: YuGo;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  Word-break:break-all;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #b2b2b2;
+  color: #ffffff;
+  text-align: center;
+  background: #0fbe9f;
+}
+
+.samazon-border-comment {
+  padding: 1rem 2rem;
+  border: 2px solid #b2b2b2;
+}
+
+
+ul {
+  text-align: left;
+  padding-top: 15px;
+  padding-left: 15px;
+  list-style-type: none; 
+  margin-bottom: 0;
+}
+
+ul li {
+  margin-bottom: 1em;
+}
+
+ul li input[type="radio"] + label {
+  font-size: 1.125em;
+  font-weight: 300;
+  cursor: pointer; 
+}
+
+ul li input[type="radio"] + label:before {
+  content: '\f00c';
+  font-family: 'FontAwesome';
+  font-size: 12px;
+  color: transparent;
+  padding: 3px;
+  background-color: #d7d7d7;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: 1px;
+}
+
+ul li input[type="radio"]:checked + label:before {
+  background-color: #0fbe9f;
+  color: white; 
+}
+
+input[type="radio"] {
+  display: none; 
+}
+
+/* パンくずリスト */
+.breadcrumb {
+  margin-bottom: 10px;
+  padding: 0;
+  list-style: none;
+  background-color:white
+}
+
+.breadcrumb li {
+  display: inline-block;/*横に並ぶように*/
+  list-style: none;
+  font-weight: bold;/*太字*/
+}
+
+.breadcrumb li:after {
+  /* ▶を表示*/
+  font-family: FontAwesome;
+  content: '\f0da';
+  padding: 0 0.3em;
+  color: #0fbe9f;
+}
+
+.breadcrumb li:last-child:after {
+  content: '';
+}
+
+.breadcrumb li a {
+  display: inline-block;
+  padding: 0.2em 0.8em;
+  border-radius: 15px;
+  text-decoration: none;
+  color: white;
+  background: #0fbe9f;
+  font-size: 0.9em;
+  pointer-events: none
+}
+
+.breadcrumb-gray li a {
+  display: inline-block;
+  padding: 0.2em 0.8em;
+  border-radius: 15px;
+  text-decoration: none;
+  color: white;
+  background: #d7d7d7;
+  font-size: 0.9em;
+  pointer-events: none
+}
+
+/*.breadcrumb li a:hover {
+  background: #c9dbfb;
+}*/
+
+/* パンくずリスト */
