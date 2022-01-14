@@ -62,6 +62,9 @@ return [
 
     'from_name' => env('MAIL_FROM_NAME'),
 
+    'private_key' => env('PAYJP_SECRET_KEY'),
+
+    'public_key' => env('PAYJP_PUBLIC_KEY'),
 
     /*
     |--------------------------------------------------------------------------

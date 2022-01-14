@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/samazon.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/original.css')}}" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/3723f06c66.js" crossorigin="anonymous"></script>
 </head>

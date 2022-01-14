@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.item')
 
 @section('content')
 <div class="container">
@@ -64,13 +64,15 @@
                     @foreach($tickets as $ticket)
                         @if ($cnt === 1)
                         <li>
-                            <input type="radio" name="event" id="event-name{{ $ticket->id }}" value="{{ $ticket->id }}" checked>
-                            <label for="event-name{{ $ticket->id }}">{{ $ticket->name }}&nbsp;{{ $ticket->price }}円（税込）</label>
+                            <input type="radio" name="ticket" id="ticket-name{{ $ticket->id }}" value="{{ $ticket->price }}" checked>
+                            <label for="ticket-name{{ $ticket->id }}">{{ $ticket->name }}&nbsp;{{ $ticket->price }}円（税込）</label>
+                            <input type="hidden" name="name{{$ticket->price}}" value="{{ $ticket->name }}"> 
                         </li>
                         @else
                         <li>
-                            <input type="radio" name="event" id="event-name{{ $ticket->id }}" value="{{ $ticket->id }}"> 
-                            <label for="event-name{{ $ticket->id }}">{{ $ticket->name }}&nbsp;{{ $ticket->price }}円（税込）</label>
+                            <input type="radio" name="ticket" id="ticket-name{{ $ticket->id }}" value="{{ $ticket->price }}"> 
+                            <label for="ticket-name{{ $ticket->id }}">{{ $ticket->name }}&nbsp;{{ $ticket->price }}円（税込）</label>
+                            <input type="hidden" name="name{{$ticket->price}}" value="{{ $ticket->name }}"> 
                         </li>
                         @endif
                         <?php $cnt++; ?>

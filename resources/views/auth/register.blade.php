@@ -57,7 +57,7 @@
                             @endforeach</select>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>メールアドレスを入力してください</strong>
+                                    <strong>都道府県を選択してください</strong>
                                 </span>
                             @enderror
                     </div>
