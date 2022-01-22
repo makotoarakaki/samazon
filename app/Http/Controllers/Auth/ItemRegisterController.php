@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class ItemRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/email/verify';
+    //protected $redirectTo = '/email/verify';
 
     /**
      * Create a new controller instance.
@@ -54,6 +56,38 @@ class RegisterController extends Controller
             'area' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8'],
         ]);
+    }
+
+    public function register(Request $request)
+    {
+
+        $event_date = $request->input('event_date');
+        $product_name = $request->input('product_name');
+        $price = $request->input('price');
+
+        // パスワード桁数チェック
+        if (strlen($request->input('password')) < 8) {
+            $error = 'パスワードは８桁以上で入力して下さい。';
+            return view('items.input', compact('product_name', 'price', 'error'));
+        }
+        // 登録ユーザーチェック
+        $user = "";
+        if (Auth::user()) {
+            $user = User::find(Auth::user()->id);
+        }
+        if(!empty($user)) {
+            $error = 'このメールアドレスは既に登録されています。「購入経験がある方はこちら」よりログインをお願いします。';
+            return view('items.input', compact('product_name', 'price', 'error'));
+        }
+
+//        $validate = $this->validator($request->all())->validate();
+
+        $user = new User;
+       
+        $user = $this->create($request->all());
+        $this->guard()->login($user);
+
+        return view('items.confirm', compact('event_date', 'product_name', 'price'));
     }
 
     /**

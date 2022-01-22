@@ -46,7 +46,7 @@
             <div class="samazon-event-title row">
                 <h1>{{$event->title}}</h1>
             </div>
-            <form method="POST" action="/item/input" class="mb-5" enctype="multipart/form-data">
+            <form method="POST" action="/items/input" class="mb-5" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-inline mt-4 mb-4 row">
                     @if ($event->image !== "")
@@ -57,6 +57,10 @@
                 </div>
                 <div class="form-inline mt-4 mb-4 row samazon-border-comment">
                     {{$event->comment}}
+                </div>
+                <div class="mt-4 mb-4 row samazon-border-comment">
+                    日時&nbsp;：&nbsp;{{$event_date}}
+                    <input type="hidden" name="event_date" value="{{ $event_date }}"> 
                 </div>
                 <div class="mt-4 mb-4 row samazon-border-comment">
                     <ul class="radios">
@@ -78,15 +82,13 @@
                         <?php $cnt++; ?>
                     @endforeach
                     </ul>
-                </div>
+                </div>  
+
+                <hr />
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="w-50 btn samazon-submit-button">次へ（お客様情報入力）</button>
                 </div>
             </form>
-
-            <div class="d-flex justify-content-end">
-                <a href="/dashboard/products">商品一覧に戻る</a>
-            </div>
         </div>
     </div>
 </div>

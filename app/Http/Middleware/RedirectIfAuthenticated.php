@@ -23,10 +23,9 @@ class RedirectIfAuthenticated
             $redirect_url = '/dashboard';
         }
 
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
-        }
-
+        // if (Auth::guard($guard)->check()) {
+        //     return redirect('/');
+        // }
         return $next($request);
     }
 }

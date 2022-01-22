@@ -48,10 +48,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->middleware('auth:admins');
 
 //Route::resource('item', 'ItemController');
-Route::get('item/create/{id}', 'ItemController@create');
-Route::post('item/input', 'ItemController@input');
-Route::post('item/input/token', 'UserController@token')->name('mypage.token');
-// Route::get('users/mypage/register_card', 'UserController@register_card')->name('mypage.register_card');
+Route::get('items/create/{id}', 'ItemController@create');
+Route::post('items/input', 'ItemController@input');
+Route::post('/items', 'ItemController@store')->name('items.store');
+//Route::post('items/confirm', 'ItemController@confirm')->name('items.confirm');
+Route::get('items/confirm', 'ItemController@confirm')->name('items.confirm');
+Route::post('items/token', 'ItemController@token');
 
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
