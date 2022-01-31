@@ -54,7 +54,10 @@ Route::post('/items', 'ItemController@store')->name('items.store');
 //Route::post('items/confirm', 'ItemController@confirm')->name('items.confirm');
 Route::get('items/confirm', 'ItemController@confirm')->name('items.confirm');
 Route::post('items/token', 'ItemController@token');
-
+Route::post('items/store', 'ItemController@store');
+// Route::get('items/completion', function () {
+//      return view('items.completion');
+// });
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
      Route::get('login', 'Dashboard\Auth\LoginController@showLoginForm')->name('login');

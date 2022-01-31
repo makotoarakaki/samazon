@@ -20,10 +20,12 @@ class CreateEventsTable extends Migration
             $table->string('image')->default('');
             $table->integer('category_id')->unsigned();
             $table->integer('pay_m'); // 販売回数
-            $table->dateTime('event_date')->nullable(); // 開催日
-            $table->dateTime('period_from');
-            $table->dateTime('period_to')->nullable();
-            $table->string('ntc_email1');
+            $table->date('event_date')->nullable(); // 開催日
+            $table->time('event_time_from'); // 開催時間開始
+            $table->time('event_time_to');// 開催時間終了
+            $table->text('venue');// 会場
+            $table->string('administrator');// 運営者
+            $table->string('ntc_email');
             $table->string('ntc_email2')->nullable();
             $table->string('ntc_email3')->nullable();
             $table->timestamps();

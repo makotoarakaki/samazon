@@ -41,10 +41,7 @@
                 </div>
             @endif
                 <div class="form-inline mt-4 mb-4 row samazon-border-comment">
-                        開催日&nbsp;：&nbsp;{{$event_date}}
-                </div>
-                <div class="form-inline mt-4 mb-4 row samazon-border-comment">
-                        {{$product_name}}&nbsp;：&nbsp;{{$price}}円
+                        {{$product_name}}&nbsp;：&nbsp;{{number_format($price)}}円（税込）
                 </div>                
                 <div class="d-flex justify-content-center">
                     <div class="container w-50">
@@ -64,17 +61,18 @@
                             @else
                             <script type="text/javascript" src="https://checkout.pay.jp/" class="payjp-button" data-key="{{ ENV('PAYJP_PUBLIC_KEY') }}" data-on-created="onCreated" data-text="カードを更新する" data-submit-text="カードを更新する"></script>
                             @endif
-                            <input type="hidden" name="event_date" value="{{ $event_date }}">
-                            <input type="hidden" name="product_name" value="{{ $product_name }}">
+                            <input type="hidden" name="event_id" value="{{ $event_id }}"> 
+                            <input type="hidden" name="product_name" value="{{ $product_name }}"> 
                             <input type="hidden" name="price" value="{{ $price }}">
                         </form>
                     </div>
                 </div>
 
                 <hr />
-            <form method="POST" action="/items/input" class="mb-5" enctype="multipart/form-data">
-                <input type="hidden" name="event_date" value="{{ $event_date }}">
-                <input type="hidden" name="product_name" value="{{ $product_name }}">
+            <form method="POST" action="/items/store" class="mb-5" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="event_id" value="{{ $event_id }}"> 
+                <input type="hidden" name="product_name" value="{{ $product_name }}"> 
                 <input type="hidden" name="price" value="{{ $price }}">
                 @if (empty($card))
                     <div class="d-flex justify-content-center">

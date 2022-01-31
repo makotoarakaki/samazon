@@ -45,14 +45,19 @@
         </div>
         <div class="form-inline mt-4 mb-4 row">
             <label for="event-tax" class="col-2 d-flex justify-content-start">消費税</label>
-            <label for="event-tax-in">税込価格</label>
-            <input type="radio" name="tax" id="event-tax-in" class="samazon-check-box">
-            &nbsp;
-            <label for="event-tax-no">税別価格</label>
-            <input type="radio" name="tax" id="event-tax-no" class="samazon-check-box">
+            <ul class="radios">
+                <li>
+                    <input type="radio" name="tax" id="tax1" value="1" checked>
+                    <label for="tax1">税込価格</label>
+                </li>
+                <li>
+                    <input type="radio" name="tax" id="tax2" value="2">
+                    <label for="tax2">税抜価格</label>
+                </li>
+            </ul>
         </div>
         <div class="form-inline mt-4 mb-4 row">
-            <label for="event-event_date" class="col-2 d-flex justify-content-start">開催日時</label>
+            <label for="event-event_date" class="col-2 d-flex justify-content-start">開催日</label>
             <div class="input-group date" id="datePicker" data-target-input="nearest">                                                        
                 <input type="datetime" name="event_date" required class="form-control form-control-sm datetimepicker-input" data-target="#datePicker"/>
                 <div class="input-group-append" data-target="#datePicker" data-toggle="datetimepicker">
@@ -61,9 +66,9 @@
             </div>        
         </div>
         <div class="form-inline mt-4 mb-4 row">
-            <label for="event-period_from" class="col-2 d-flex justify-content-start">開催期間</label>
+            <label for="event_time_from" class="col-2 d-flex justify-content-start">開催時間</label>
             <div class="input-group date" id="datePicker2" data-target-input="nearest">                                                        
-                <input type="datetime" name="period_from" required class="form-control form-control-sm datetimepicker-input" data-target="#datePicker"/>
+                <input type="datetime" name="event_time_from" required class="form-control form-control-sm datetimepicker-input" data-target="#datePicker"/>
                 <div class="input-group-append" data-target="#datePicker2" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
@@ -129,7 +134,7 @@
     });
 
     $(function(){
-        $('#period_from').datetimepicker({locale: 'ja', dayViewHeaderFormat: 'YYYY年M月' ,format: 'YYYY/MM/DD'});
+        $('#event_time_from').timepicker({locale: 'ja'});
     });
 
     $(function(){

@@ -35,10 +35,8 @@ class EventController extends Controller
         }
 
         $sort = [
-            '価格の安い順' => 'price asc',
-            '価格の高い順' => 'price desc',
-            '出品の古い順' => 'updated_at asc',
-            '出品の新しい順' => 'updated_at desc'
+            '古い順' => 'updated_at asc',
+            '新しい順' => 'updated_at desc'
         ];
 
         return view('dashboard.events.index', compact('events', 'sort', 'sorted', 'total_count', 'keyword'));

@@ -59,23 +59,35 @@
                     {{$event->comment}}
                 </div>
                 <div class="mt-4 mb-4 row samazon-border-comment">
-                    日時&nbsp;：&nbsp;{{$event_date}}
-                    <input type="hidden" name="event_date" value="{{ $event_date }}"> 
+                    <p>
+                        日程&nbsp;：&nbsp;{{$detail['event_date']}}
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{$detail['etime_from']}}〜{{$detail['etime_to']}}
+                        <input type="hidden" name="event_date" value="{{ $detail['event_date'] }}"> 
+                    </p>
+                    <p>
+                        会場&nbsp;：&nbsp;{{$detail['venue']}}
+                    </p>
+                    <p>
+                        運営&nbsp;：&nbsp;{{$detail['administrator']}}
+                    </p>
                 </div>
                 <div class="mt-4 mb-4 row samazon-border-comment">
+                    <label for="radios" class="col-md-5 col-form-label text-md-left">チケットの選択<span class="ml-1 samazon-label-label"></label>
                     <ul class="radios">
                     <?php $cnt = 1; ?>
                     @foreach($tickets as $ticket)
                         @if ($cnt === 1)
                         <li>
                             <input type="radio" name="ticket" id="ticket-name{{ $ticket->id }}" value="{{ $ticket->price }}" checked>
-                            <label for="ticket-name{{ $ticket->id }}">{{ $ticket->name }}&nbsp;{{ $ticket->price }}円（税込）</label>
+                            <label for="ticket-name{{ $ticket->id }}">{{ $ticket->name }}&nbsp;{{ number_format($ticket->price) }}円（税込）</label>
                             <input type="hidden" name="name{{$ticket->price}}" value="{{ $ticket->name }}"> 
                         </li>
                         @else
                         <li>
                             <input type="radio" name="ticket" id="ticket-name{{ $ticket->id }}" value="{{ $ticket->price }}"> 
-                            <label for="ticket-name{{ $ticket->id }}">{{ $ticket->name }}&nbsp;{{ $ticket->price }}円（税込）</label>
+                            <label for="ticket-name{{ $ticket->id }}">{{ $ticket->name }}&nbsp;{{ number_format($ticket->price) }}円（税込）</label>
                             <input type="hidden" name="name{{$ticket->price}}" value="{{ $ticket->name }}"> 
                         </li>
                         @endif
@@ -83,6 +95,7 @@
                     @endforeach
                     </ul>
                 </div>  
+                <input type="hidden" name="event_id" value="{{ $event->id }}"> 
 
                 <hr />
                 <div class="d-flex justify-content-center">

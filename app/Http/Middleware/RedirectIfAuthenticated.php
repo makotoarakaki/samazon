@@ -18,14 +18,14 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         $redirect_url = '/';
-
         if ($guard == 'admins') {
             $redirect_url = '/dashboard';
         }
 
-        // if (Auth::guard($guard)->check()) {
-        //     return redirect('/');
-        // }
+        if (Auth::guard($guard)->check()) {
+            return redirect('/');
+        }
+
         return $next($request);
     }
 }

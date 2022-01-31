@@ -6,6 +6,7 @@ use App\Item;
 use App\Event;
 use App\Ticket;
 use App\User;
+use App\SellingEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,13 +19,37 @@ class ItemController extends Controller
      */
     public function create($id)
     {
+        // データベースからデータを取得
         $event = Event::find($id);
         $tickets = Ticket::where('event_id', $id)->get();
 
-        $date = date_create($event->event_date);
-        $event_date = date_format($date, 'Y年m月d日H時i分');
+        // イベント日をフォーマット変換
+        $edate = date_create($event->event_date);
+        $ed = date_format($edate, 'Y年m月d日');
 
-        return view('items.create', compact('event_date', 'event', 'tickets'));
+        // 曜日を抽出
+        $week = array( "日", "月", "火", "水", "木", "金", "土" );
+        $eweek = $week[date_format($edate, 'w')];
+        // イベント日 + 曜日
+        $event_date = $ed.'（'.$eweek.')';
+
+        // 開始時間
+        $etime_from = date_create($event->event_time_from);
+        $event_time_from = date_format($etime_from, 'H時i分');
+
+        // 終了時間
+        $etime_to = date_create($event->event_time_to);
+        $event_time_to = date_format($etime_to, 'H時i分');
+
+        $detail = [
+            'event_date' => $event_date, 
+            'etime_from' => $event_time_from, 
+            'etime_to' => $event_time_to, 
+            'venue' => $event->venue, 
+            'administrator' => $event->administrator
+        ];
+
+        return view('items.create', compact('detail', 'event', 'tickets'));
     }
 
     /**
@@ -34,14 +59,14 @@ class ItemController extends Controller
      */
     public function input(Request $request)
     {
-        $event_date = $request->input('event_date'); // 開催日
+        $event_id = $request->input('event_id'); // 開催日
         $price = $request->input('ticket'); // 商品料金
         $product_name = $request->input('name'.$price); // 商品名
 
         if(Auth::user()) {  
-            return redirect()->route('items.confirm', compact('event_date', 'product_name', 'price'));
+            return redirect()->route('items.confirm', compact('product_name', 'price'));
         }
-        return view('items.input', compact('event_date', 'price', 'product_name'));
+        return view('items.input', compact('event_id', 'price', 'product_name'));
     }
 
     /**
@@ -55,19 +80,9 @@ class ItemController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Item $item)
-    {
-        //
-    }
-
     public function confirm(Request $request)
     {
+//        dd($request);
         $token = "";
         if (Auth::user()) {
             $user = User::find(Auth::user()->id);
@@ -93,11 +108,11 @@ class ItemController extends Controller
 
             }
 
-        $event_date = $request->input('event_date');
-        $product_name = $request->input('product_name');
-        $price = $request->input('price');
+            $event_id = $request->input('event_id'); // 開催日
+            $product_name = $request->input('product_name'); // 開催日
+            $price = $request->input('price');
  
-        return view('items.confirm', compact('card', 'count', 'event_date', 'product_name', 'price'));
+        return view('items.confirm', compact('card', 'count', 'event_id', 'product_name', 'price'));
      }
 
      public function token(Request $request)
@@ -123,10 +138,51 @@ class ItemController extends Controller
              $user->update();
          } 
 
-         $event_date = $request->input('event_date');
+         $event_id = $request->input('event_id');
          $product_name = $request->input('product_name');
          $price = $request->input('price');
 
-         return redirect()->route('items.confirm', compact('event_date', 'product_name', 'price'));
+         return redirect()->route('items.confirm', compact('event_id', 'product_name', 'price'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Item  $item
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $user = Auth::user();
+        $price = $request->input('price');
+
+        $selling = new SellingEvent();
+        $selling->code = substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, 10);
+        $selling->price = $price;
+        $selling->user_id = $user->id;
+        $selling->event_id = $request->input('event_id');
+
+        $selling->save();
+
+        $pay_jp_secret = env('PAYJP_SECRET_KEY');
+        \Payjp\Payjp::setApiKey($pay_jp_secret);
+ 
+        if(empty($user->token)) {
+            return redirect()->route('mypage.register_card');
+        }
+        $res = \Payjp\Charge::create(
+            [
+                "customer" => $user->token,
+                "amount" => $price,
+                "currency" => 'jpy'
+            ]
+        );
+ 
+        // お客様への購入メール送信
+        $purchase_mail = app()->make('App\Http\Controllers\PurchaseMailController');
+        $purchase_mail->purchas();
+
+        // 購入後のページへ移動
+        return view('items.completion');
     }
 }

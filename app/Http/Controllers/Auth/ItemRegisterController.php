@@ -61,14 +61,14 @@ class ItemRegisterController extends Controller
     public function register(Request $request)
     {
 
-        $event_date = $request->input('event_date');
+        $event_id = $request->input('event_id');
         $product_name = $request->input('product_name');
         $price = $request->input('price');
 
         // パスワード桁数チェック
         if (strlen($request->input('password')) < 8) {
             $error = 'パスワードは８桁以上で入力して下さい。';
-            return view('items.input', compact('product_name', 'price', 'error'));
+            return view('items.input', compact('event_id', 'product_name', 'price', 'error'));
         }
         // 登録ユーザーチェック
         $user = "";
@@ -77,17 +77,16 @@ class ItemRegisterController extends Controller
         }
         if(!empty($user)) {
             $error = 'このメールアドレスは既に登録されています。「購入経験がある方はこちら」よりログインをお願いします。';
-            return view('items.input', compact('product_name', 'price', 'error'));
+            return view('items.input', compact('event_id', 'product_name', 'price', 'error'));
         }
-
-//        $validate = $this->validator($request->all())->validate();
 
         $user = new User;
        
         $user = $this->create($request->all());
+    
         $this->guard()->login($user);
 
-        return view('items.confirm', compact('event_date', 'product_name', 'price'));
+        return view('items.confirm', compact('event_id', 'product_name', 'price'));
     }
 
     /**

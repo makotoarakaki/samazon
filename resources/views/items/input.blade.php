@@ -51,15 +51,20 @@
                 </div>
             @endif
 
-            <div class="d-flex justify-content-end">
-                <a href="/login">購入経験がある方はこちら＞＞</a>
-            </div>
+            <form method="get" name="form1" action="/item_login">
+                @csrf
+                <div class="d-flex justify-content-end">
+                    <a href="javascript:form1.submit()">購入経験がある方はこちら＞＞</a>
+                </div>
+                <input type="hidden" name="event_id" value="{{ $event_id }}"> 
+                <input type="hidden" name="product_name" value="{{ $product_name }}">
+                <input type="hidden" name="price" value="{{ $price }}">
+            </form>
             <br/>
             <hr/>
 
             <form method="POST" action="{{ route('items.register') }}">
                 @csrf
-
                 <div class="form-group row">
                     <label for="name" class="col-md-5 col-form-label text-md-left">氏名<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
 
@@ -125,7 +130,7 @@
                         @enderror
                     </div>
                 </div>
-                <input type="hidden" name="event_date" value="{{ $event_date }}">
+                <input type="hidden" name="event_id" value="{{ $event_id }}"> 
                 <input type="hidden" name="product_name" value="{{ $product_name }}">
                 <input type="hidden" name="price" value="{{ $price }}">
 

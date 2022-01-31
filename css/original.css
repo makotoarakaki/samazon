@@ -113,6 +113,11 @@
     background-color: #e2001b;
 }
 
+.samazon-label-label {
+  border-radius: 1px;
+  background-color: #0fbe9f;
+}
+
 .samazon-require-input-label-text {
     font-family: YuGo;
     font-size: 14px;
