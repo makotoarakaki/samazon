@@ -40,23 +40,6 @@
             </select>
         </div>
         <div class="form-inline mt-4 mb-4 row">
-            <label for="event-price" class="col-2 d-flex justify-content-start">価格</label>
-            <input type="number" name="price" id="event-price" class="form-control col-8">&nbsp;円
-        </div>
-        <div class="form-inline mt-4 mb-4 row">
-            <label for="event-tax" class="col-2 d-flex justify-content-start">消費税</label>
-            <ul class="radios">
-                <li>
-                    <input type="radio" name="tax" id="tax1" value="1" checked>
-                    <label for="tax1">税込価格</label>
-                </li>
-                <li>
-                    <input type="radio" name="tax" id="tax2" value="2">
-                    <label for="tax2">税抜価格</label>
-                </li>
-            </ul>
-        </div>
-        <div class="form-inline mt-4 mb-4 row">
             <label for="event-event_date" class="col-2 d-flex justify-content-start">開催日</label>
             <div class="input-group date" id="datePicker" data-target-input="nearest">                                                        
                 <input type="datetime" name="event_date" required class="form-control form-control-sm datetimepicker-input" data-target="#datePicker"/>
@@ -67,34 +50,31 @@
         </div>
         <div class="form-inline mt-4 mb-4 row">
             <label for="event_time_from" class="col-2 d-flex justify-content-start">開催時間</label>
-            <div class="input-group date" id="datePicker2" data-target-input="nearest">                                                        
-                <input type="datetime" name="event_time_from" required class="form-control form-control-sm datetimepicker-input" data-target="#datePicker"/>
-                <div class="input-group-append" data-target="#datePicker2" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            <div class="input-group date" id="timePicker_from" data-target-input="nearest">                                                        
+                <input type="datetime" name="event_time_from" required class="form-control form-control-sm datetimepicker-input" data-target="#timePicker_from"/>
+                <div class="input-group-append" data-target="#timePicker_from" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-clock"></i></div>
                 </div>
             </div>
             &nbsp;〜&nbsp;
-            <div class="input-group date" id="datePicker3" data-target-input="nearest">                                                        
-                <input type="datetime" name="period_to" required class="form-control form-control-sm datetimepicker-input" data-target="#datePicker"/>
-                <div class="input-group-append" data-target="#datePicker3" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            <div class="input-group date" id="timePicker_to" data-target-input="nearest">                                                        
+                <input type="datetime" name="event_time_to" required class="form-control form-control-sm datetimepicker-input" data-target="#timePicker_to"/>
+                <div class="input-group-append" data-target="#timePicker_to" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-clock"></i></div>
                 </div>
             </div>        
         </div>
         <div class="form-inline mt-4 mb-4 row">
-            <label for="event-period_from" class="col-2 d-flex justify-content-start">支払形式</label>
-            <div class="form-check">
-                <input type="checkbox" name="number_sales" class="form-check-input" id="check1a" checked>
-                <label class="form-check-label" for="check1a">クレジット</label>
-            </div>
-            <div class="form-check">
-                <input type="checkbox" name="number_sales" class="form-check-input" id="check1b">
-                <label class="form-check-label" for="check1b">銀行振込</label>
-            </div>
+            <label for="event-venue" class="col-2 d-flex justify-content-start align-self-start">イベント場所</label>
+            <textarea name="venue" id="event-venue" class="form-control col-8" rows="10"></textarea>
+        </div>
+        <div class="form-inline mt-4 mb-4 row">
+            <label for="event-administrator" class="col-2 d-flex justify-content-start">講師名</label>
+            <input type="text" name="administrator" id="event-administrator" class="form-control col-8">
         </div>
         <div class="form-inline mt-4 mb-4 row">
             <label for="event-ntc_email1" class="col-2 d-flex justify-content-start">通知先</label>
-            <input type="text" name="ntc_email1" id="event-ntc_email1" class="form-control col-8" placeholder="aaa@gmail.com">
+            <input type="text" name="ntc_email1" id="event-ntc_email1" class="form-control col-8" value="{{ $from_mail }}" placeholder="aaa@gmail.com">
         </div>
         <div class="form-inline mt-4 mb-4 row">
             <label for="event-ntc_email1" class="col-2 d-flex justify-content-start">通知先2</label>
@@ -104,15 +84,15 @@
             <label for="event-ntc_email1" class="col-2 d-flex justify-content-start">通知先3</label>
             <input type="text" name="ntc_email3" id="event-ntc_email3" class="form-control col-8">
         </div>
-        <div class="form-inline mt-4 mb-4 row">
+        <!-- <div class="form-inline mt-4 mb-4 row">
             <label for="event-period_from" class="col-2 d-flex justify-content-start">分類</label>
             <div class="form-check">
                 <input type="checkbox" name="after_mail_flg" class="form-check-input" id="check1a">
                 <label class="form-check-label" for="check1a">後日メールで商品やメッセージを送る</label>
             </div>
-        </div>
+        </div> -->
         <div class="d-flex justify-content-end">
-            <button type="submit" class="w-25 btn samazon-submit-button">確認する</button>
+            <button type="submit" class="w-50 btn samazon-submit-button">チケットを作成する</button>
         </div>
     </form>
 
@@ -130,15 +110,15 @@
 
 <script type="text/javascript">
     $(function(){
-        $('#event_date').datetimepicker({locale: 'ja', dayViewHeaderFormat: 'YYYY年M月' ,format: 'YYYY/MM/DD'});
+        $('#datePicker').datetimepicker({locale: 'ja', dayViewHeaderFormat: 'YYYY年M月' ,format: 'YYYY/MM/DD'});
     });
 
     $(function(){
-        $('#event_time_from').timepicker({locale: 'ja'});
+        $('#timePicker_from').datetimepicker({llocale: 'ja', format: 'HH:mm'});
     });
 
     $(function(){
-        $('#period_to').datetimepicker({locale: 'ja', dayViewHeaderFormat: 'YYYY年M月' ,format: 'YYYY/MM/DD'});
+        $('#timePicker_to').datetimepicker({locale: 'ja', format: 'HH:mm'});
     });
 
     $("#event-image").change(function() {

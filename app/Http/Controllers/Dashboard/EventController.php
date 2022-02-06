@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Event;
+use App\Ticket;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('dashboard.events.create');
+        $from_mail = config('app.from_mail');
+
+        return view('dashboard.events.create', compact('from_mail'));
     }
 
     /**
@@ -60,7 +63,67 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'comment' => 'required',
+        ],
+        [
+            'title.required' => 'イベント名は必須です。',
+            'comment.required' => 'イベント説明は必須です。',
+        ]);
+
+        $event = new Event();
+
+        $event->title = $request->input('title');
+        $event->comment = $request->input('comment');
+        if ($request->file('image') !== null) {
+            $image = $request->file('image')->store('public/events');
+            $event->image = basename($image);
+        } else {
+            $event->image = '';
+        }
+        $event->category_id = $request->input('category_id');
+        $event->event_date = $request->input('event_date');
+        $event->event_time_from = $request->input('event_time_from');
+        $event->event_time_to = $request->input('event_time_to');
+        $event->venue = $request->input('venue');
+        $event->administrator = $request->input('administrator');
+        $event->ntc_email1 = $request->input('ntc_email1');
+        $event->ntc_email2 = $request->input('ntc_email2');
+        $event->ntc_email3 = $request->input('ntc_email3');
+
+        $event->save();
+
+        $event_new = Event::orderBy('created_at', 'desc')->first();
+        $event_id = $event_new->id;
+
+        // $ticket = app()->make('App\Http\Controllers\Dashboard\TicketController');
+        // $ticket->index($event_id);
+ 
+        return redirect()->route('dashboard.tickets.index', compact('event_id'));
+    }
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function ticket(Request $request)
+    {
+        $ticket = new Ticket();
+        $ticket->id = $request->input('id');
+        $pay_m = 0;
+        if ($request->input('pay_m1') == 'on') {
+            $pay_m++;
+        }
+        if ($request->input('pay_m2') == 'on') {
+            $pay_m++;
+        }
+        $ticket->pay_method = $pay_m;
+
+
+        return redirect()->route('show', $ticket->id);
     }
 
     /**
@@ -71,7 +134,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**

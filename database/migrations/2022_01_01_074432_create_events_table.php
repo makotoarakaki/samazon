@@ -19,7 +19,6 @@ class CreateEventsTable extends Migration
             $table->text('comment');
             $table->string('image')->default('');
             $table->integer('category_id')->unsigned();
-            $table->integer('pay_m'); // 販売回数
             $table->date('event_date')->nullable(); // 開催日
             $table->time('event_time_from'); // 開催時間開始
             $table->time('event_time_to');// 開催時間終了
