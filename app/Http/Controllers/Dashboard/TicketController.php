@@ -16,4 +16,17 @@ class TicketController extends Controller
 
         return view('dashboard.tickets.index', compact('tickets', 'event_id'));
     }
+
+        /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        $event_id = $request->input('event_id');
+
+        return view('dashboard.tickets.create', compact('event_id'));
+    }
+
 }

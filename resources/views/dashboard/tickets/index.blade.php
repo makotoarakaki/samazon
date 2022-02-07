@@ -16,10 +16,8 @@
 
     <hr>
 
-    <form method="POST" action="/dashboard/events/{{$event_id}}" class="mb-5" enctype="multipart/form-data">
-        {{ csrf_field() }}
         <div class="d-flex justify-content-between w-75 mt-4">
-            <a href="{{ route('dashboard.tickets.create') }}" class="btn samazon-submit-button">+ 新規作成</a>
+            <a href="/dashboard/tickets/create?event_id={{$event_id}}" class="btn samazon-submit-button">+ 新規作成</a>
         </div>
 
         <div class="table-responsive">
@@ -61,7 +59,6 @@
         <div class="d-flex justify-content-end">
             <button type="submit" class="w-50 btn samazon-submit-button">チケットを作成する</button>
         </div>
-    </form>
 
     <div class="d-flex justify-content-end">
         <a href="/dashboard/events">イベント一覧に戻る</a>
