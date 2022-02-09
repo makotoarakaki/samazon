@@ -134,7 +134,9 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        dd($id);
+        $event = Event::find($id);
+
+        return view('dashboard.events.show', compact('event'));
     }
 
     /**
@@ -143,9 +145,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $event)
     {
-        //
+        return view('dashboard.events.edit', compact('event'));
     }
 
     /**
@@ -155,9 +157,46 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Event $event)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'comment' => 'required',
+        ],
+        [
+            'title.required' => 'イベント名は必須です。',
+            'comment.required' => 'イベント説明は必須です。',
+        ]);
+
+        $event->title = $request->input('title');
+        $event->comment = $request->input('comment');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('public/events');
+            $event->image = basename($image);
+        } else if(isset($event->image)) {
+            // do nothing
+        } else {
+            $event->image = '';
+        }
+        $event->category_id = $request->input('category_id');
+        $event->event_date = $request->input('event_date');
+        $event->event_time_from = $request->input('event_time_from');
+        $event->event_time_to = $request->input('event_time_to');
+        $event->venue = $request->input('venue');
+        $event->administrator = $request->input('administrator');
+        $event->ntc_email1 = $request->input('ntc_email1');
+        $event->ntc_email2 = $request->input('ntc_email2');
+        $event->ntc_email3 = $request->input('ntc_email3');
+
+        $event->update();
+
+        // $event_new = Event::orderBy('created_at', 'desc')->first();
+        // $event_id = $event_new->id;
+
+        // $ticket = app()->make('App\Http\Controllers\Dashboard\TicketController');
+        // $ticket->index($event_id);
+ 
+        return redirect()->route('dashboard.events.index');
     }
 
     /**
@@ -166,8 +205,11 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
-        //
+        $event->delete();
+
+        return redirect()->route('dashboard.events.index');
+
     }
 }

@@ -41,11 +41,11 @@
                             <a href="/dashboard/tickets/{{ $ticket->id }}/edit" class="dashboard-edit-link">編集</a>
                         </td>
                         <td>
-                            <a href="/dashboard/tickets/{{ $ticket->id }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dashboard-delete-link">
+                            <a href="/dashboard/tickets/{{ $ticket->id }}" onclick="event.preventDefault(); document.getElementById('logout-form{{ $ticket->id }}').submit();" class="dashboard-delete-link">
                                 削除
                             </a>
 
-                            <form id="logout-form" action="/dashboard/tickets/{{ $ticket->id }}" method="POST" style="display: none;">
+                            <form id="logout-form{{ $ticket->id }}" action="/dashboard/tickets/{{ $ticket->id }}?event_id={{$event_id}}" method="POST" style="display: none;">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
                             </form>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="d-flex justify-content-end">
-            <button type="submit" class="w-50 btn samazon-submit-button">チケットを作成する</button>
+            <a href="/dashboard/events/{{$event_id}}" class="btn samazon-submit-button">確認</a>
         </div>
 
     <div class="d-flex justify-content-end">

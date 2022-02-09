@@ -74,7 +74,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
      Route::resource('events', 'Dashboard\EventController')->middleware('auth:admins');
 //     Route::post('events/ticket/{id}', 'Dashboard\EventController@ticket')->name('events.ticket')->middleware('auth:admins');
 //     Route::post('/events/ticket/{id}', 'Dashboard\TicketController@index')->middleware('auth:admins');
-     Route::get('/events/tickets', 'Dashboard\TicketController@index');
+//     Route::get('/events/tickets', 'Dashboard\TicketController@index');
      Route::resource('tickets', 'Dashboard\TicketController')->middleware('auth:admins');
 });
 

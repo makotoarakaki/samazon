@@ -61,11 +61,11 @@
                         <a href="/dashboard/events/{{ $event->id }}/edit" class="dashboard-edit-link">編集</a>
                     </td>
                     <td>
-                        <a href="/dashboard/events/{{ $event->id }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dashboard-delete-link">
+                        <a href="/dashboard/events/{{ $event->id }}" onclick="event.preventDefault(); document.getElementById('logout-form{{ $event->id }}').submit();" class="dashboard-delete-link">
                             削除
                         </a>
 
-                        <form id="logout-form" action="/dashboard/events/{{ $event->id }}" method="POST" style="display: none;">
+                        <form id="logout-form{{ $event->id }}" action="/dashboard/events/{{ $event->id }}" method="POST" style="display: none;">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                         </form>

@@ -16,15 +16,15 @@
 
     <hr>
 
-    <form method="POST" name="form1" action="/dashboard/tickets?event_id={{$event_id}}" class="mb-5" enctype="multipart/form-data">
+    <form method="POST" name="form1" action="/dashboard/tickets?event_id={{$ticket->event_id}}" class="mb-5" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-inline mt-4 mb-4 row">
             <label for="ticket-name" class="col-2 d-flex justify-content-start">チケット名</label>
-            <input type="text" name="name" id="ticket-name" class="form-control col-8">
+            <input type="text" name="name" id="ticket-name" class="form-control col-8" value="{{ $ticket->name }}">
         </div>
         <div class="form-inline mt-4 mb-4 row">
             <label for="ticket-amount" class="col-2 d-flex justify-content-start align-self-start">金額</label>
-            <input type="number" name="price" id="ticket-amount" class="form-control col-8 taxExcluded">&nbsp;円
+            <input type="number" name="price" id="ticket-amount" class="form-control col-8 taxExcluded" value="{{ $ticket->price }}">&nbsp;円
         </div>
         <div class="form-inline mt-4 mb-4 row">
             <label for="ticket-amount" class="col-2 d-flex justify-content-start align-self-start"></label>
@@ -32,18 +32,18 @@
         </div>
         <div class="form-inline mt-4 mb-4 row">
             <label for="ticket-sheets" class="col-2 d-flex justify-content-start align-self-start">販売数</label>
-            <input type="number" name="number_seats" id="ticket-sheets" class="form-control col-8">
+            <input type="number" name="number_seats" id="ticket-sheets" class="form-control col-8" value="{{ $ticket->number_seats }}">
         </div>
 
         <div class="form-inline mt-4 mb-4 row">
             <label for="ticket-tax" class="col-2 d-flex justify-content-start align-self-start">消費税</label>
             <ul class="radios">
                 <li>
-                    <input type="radio" name="tax_flg" class="taxChoise" id="ticket-tax_flg1" value="1">
+                    <input type="radio" name="tax_flg" class="taxChoise" id="ticket-tax_flg1" value="1" {{ $ticket->tax_flg == 1 ? 'checked' : '' }}>
                     <label for="ticket-tax_flg1">税込価格</label>
                 </li>
                 <li>
-                    <input type="radio" name="tax_flg" class="taxChoise" id="ticket-tax_flg2" value="2" checked> 
+                    <input type="radio" name="tax_flg" class="taxChoise" id="ticket-tax_flg2" value="2" {{ $ticket->tax_flg == 2 ? 'checked' : '' }}> 
                     <label for="ticket-tax_flg2">税別価格</label>
                 </li>
             </ul>
@@ -51,18 +51,18 @@
         <div class="form-inline mt-4 mb-4 row">
             <label for="event-period_from" class="col-2 d-flex justify-content-start">支払形式</label>
             <div class="form-check">
-                <input type="checkbox" name="pay_m1" class="form-check-input" id="pay_m1" checked>
+                <input type="checkbox" name="pay_m1" class="form-check-input" id="pay_m1" {{ $ticket->pay_method == 1 || $ticket->pay_method == 2 ? 'checked' : '' }}>
                 <label class="form-check-label" for="pay_m1">クレジット</label>
             </div>
             &nbsp;&nbsp;
             <div class="form-check">
-                <input type="checkbox" name="pay_m2" class="form-check-input" id="pay_m2">
+                <input type="checkbox" name="pay_m2" class="form-check-input" id="pay_m2" {{ $ticket->pay_method == 2 ? 'checked' : '' }}>
                 <label class="form-check-label" for="pay_m2">銀行振込</label>
             </div>
         </div>
         <input type="hidden" value="{{}}">
         <div class="d-flex justify-content-end">
-            <button type="submit" class="w-50 btn samazon-submit-button">作成する</button>
+            <button type="submit" class="w-50 btn samazon-submit-button">更新する</button>
         </div>
     </form>
 

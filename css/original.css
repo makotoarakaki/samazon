@@ -431,3 +431,7 @@ img {
   visibility: hidden;
 }
 /* ローディング */
+
+.h1-coler {
+  color: #0fbe9f;
+}
