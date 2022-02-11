@@ -64,7 +64,7 @@ class ItemController extends Controller
         $product_name = $request->input('name'.$price); // 商品名
 
         if(Auth::user()) {  
-            return redirect()->route('items.confirm', compact('product_name', 'price'));
+            return redirect()->route('items.confirm', compact('event_id', 'product_name', 'price'));
         }
         return view('items.input', compact('event_id', 'price', 'product_name'));
     }
@@ -178,9 +178,16 @@ class ItemController extends Controller
             ]
         );
  
+         // データを取得
+         $event_id = $request->input('event_id');
+         $product_name = $request->input('product_name');
+         $price = $request->input('price');
+
+         $event = Event::find($event_id);
+
         // お客様への購入メール送信
         $purchase_mail = app()->make('App\Http\Controllers\PurchaseMailController');
-        $purchase_mail->purchas();
+        $purchase_mail->purchas($event, $product_name, $price);
 
         // 購入後のページへ移動
         return view('items.completion');

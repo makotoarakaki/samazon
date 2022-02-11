@@ -47,6 +47,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Imports\\ProductsImport' => $baseDir . '/app/Imports/ProductsImport.php',
     'App\\Item' => $baseDir . '/app/Item.php',
+    'App\\MailStand' => $baseDir . '/app/MailStand.php',
     'App\\Mail\\PurchaseMail' => $baseDir . '/app/Mail/PurchaseMail.php',
     'App\\MajorCategory' => $baseDir . '/app/MajorCategory.php',
     'App\\Notifications\\CustomResetPassword' => $baseDir . '/app/Notifications/CustomResetPassword.php',

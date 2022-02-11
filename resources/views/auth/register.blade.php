@@ -15,11 +15,27 @@
                     <label for="name" class="col-md-5 col-form-label text-md-left">氏名<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
 
                     <div class="col-md-7">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror samazon-login-input" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="山本 太郎">
+                        <input id="name1" type="text" class="form-control @error('name1') is-invalid @enderror samazon-login-input" name="name1" value="{{ old('name1') }}" required autocomplete="name1" autofocus placeholder="山本">
+                        <input id="name2" type="text" class="form-control @error('name2') is-invalid @enderror samazon-login-input" name="name2" value="{{ old('name2') }}" required autocomplete="name2" autofocus placeholder="太郎">
 
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>氏名を入力してください</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="kana" class="col-md-5 col-form-label text-md-left">ふりがな<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
+
+                    <div class="col-md-7">
+                        <input id="kana1" type="text" class="form-control @error('kana1') is-invalid @enderror samazon-login-input" name="kana1" value="{{ old('kana1') }}" required autocomplete="kana1" autofocus placeholder="やまもと">
+                        <input id="kana2" type="text" class="form-control @error('kana2') is-invalid @enderror samazon-login-input" name="kana2" value="{{ old('kana2') }}" required autocomplete="kana2" autofocus placeholder="たろう">
+
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>ふりがなを入力してください</strong>
                         </span>
                         @enderror
                     </div>

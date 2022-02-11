@@ -136,7 +136,31 @@ class EventController extends Controller
     {
         $event = Event::find($id);
 
-        return view('dashboard.events.show', compact('event'));
+        // イベント日をフォーマット変換
+        $edate = date_create($event->event_date);
+        $ed = date_format($edate, 'Y年m月d日');
+
+        // 曜日を抽出
+        $week = array( "日", "月", "火", "水", "木", "金", "土" );
+        $eweek = $week[date_format($edate, 'w')];
+        // イベント日 + 曜日
+        $event_date = $ed.'（'.$eweek.')';
+
+        // 開始時間
+        $etime_from = date_create($event->event_time_from);
+        $event_time_from = date_format($etime_from, 'H時i分');
+
+        // 終了時間
+        $etime_to = date_create($event->event_time_to);
+        $event_time_to = date_format($etime_to, 'H時i分');
+
+        $edate = [
+            'event_date' => $event_date, 
+            'etime_from' => $event_time_from, 
+            'etime_to' => $event_time_to, 
+        ];        
+
+        return view('dashboard.events.show', compact('event', 'edate'));
     }
 
     /**

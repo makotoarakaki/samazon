@@ -98,7 +98,8 @@ class ItemRegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'name' => $data['name1'].' '.$data['name2'],
+            'kana' => $data['kana1'].' '.$data['kana2'],
             'email' => $data['email'],
             'area' => $data['area'],
             'password' => Hash::make($data['password']),

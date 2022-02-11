@@ -17,11 +17,16 @@ class PurchaseMail extends Mailable
      *
      * @return void
      */
-    public function __construct($title, $subtitle, $comment)
+    public function __construct($title, $subtitle, $comment, $event_date, $venue, $administrator, $product_name, $price)
     {
         $this->title = $title;
         $this->subtitle = $subtitle;
         $this->comment = $comment;
+        $this->event_date = $event_date;
+        $this->venue = $venue;
+        $this->administrator = $administrator;
+        $this->product_name = $product_name;
+        $this->price = $price;
     }
 
     /**
@@ -33,9 +38,9 @@ class PurchaseMail extends Mailable
     {
         $email = Auth::user()->email;
         $name = Auth::user()->name;
-
         $from = config('app.from_mail'); // config.app.phpで定義した値を取得
         $from_name = config('app.from_name'); // config.app.phpで定義した値を取得
+
         return $this->to($email)
                     ->from($from, $from_name)
                     ->view('emails.purchase')
@@ -45,6 +50,11 @@ class PurchaseMail extends Mailable
                             'title' => $this->title, 
                             'subtitle' => $this->subtitle, 
                             'comment' => $this->comment, 
+                            'event_date' => $this->event_date, 
+                            'venue' => $this->venue, 
+                            'administrator' => $this->administrator, 
+                            'product_name' => $this->product_name, 
+                            'price' => $this->price, 
                         ]
                     )
                     ->subject($this->title.'のお申し込みありがとうございます。');

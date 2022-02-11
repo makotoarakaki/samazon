@@ -155,8 +155,8 @@ class CartController extends Controller
         Cart::instance(Auth::user()->id)->destroy();
 
         // お客様への購入メール送信
-        $purchase_mail = app()->make('App\Http\Controllers\PurchaseMailController');
-        $purchase_mail->purchas();
+        // $purchase_mail = app()->make('App\Http\Controllers\PurchaseMailController');
+        // $purchase_mail->purchas();
 
         return redirect()->route('carts.index');
     }
