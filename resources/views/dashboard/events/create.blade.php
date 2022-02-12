@@ -72,8 +72,8 @@
             <label for="event-administrator" class="col-2 d-flex justify-content-start">講師名</label>
             <input type="text" name="administrator" id="event-administrator" class="form-control col-8">
         </div>
-        <div class="form-inline mt-4 mb-4 row">
-            <label for="event-ntc_email1" class="col-2 d-flex justify-content-start">通知先</label>
+        <!-- <div class="form-inline mt-4 mb-4 row">
+            <label for="event-ntc_email1" class="col-2 d-flex justify-content-start">配信元メール</label>
             <input type="text" name="ntc_email1" id="event-ntc_email1" class="form-control col-8" value="{{ $from_mail }}" placeholder="aaa@gmail.com">
         </div>
         <div class="form-inline mt-4 mb-4 row">
@@ -83,7 +83,7 @@
         <div class="form-inline mt-4 mb-4 row">
             <label for="event-ntc_email1" class="col-2 d-flex justify-content-start">通知先3</label>
             <input type="text" name="ntc_email3" id="event-ntc_email3" class="form-control col-8">
-        </div>
+        </div> -->
         <!-- <div class="form-inline mt-4 mb-4 row">
             <label for="event-period_from" class="col-2 d-flex justify-content-start">分類</label>
             <div class="form-check">

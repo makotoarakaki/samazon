@@ -15,6 +15,9 @@ class CreateMailStandsTable extends Migration
     {
         Schema::create('mail_stands', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
+            $table->text('comment');
+            $table->datetime('send_datetime');
             $table->timestamps();
         });
     }

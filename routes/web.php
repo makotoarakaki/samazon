@@ -72,11 +72,13 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
      Route::get('products/import/csv', 'Dashboard\ProductController@import')->name('products.import_csv')->middleware('auth:admins');
      Route::post('products/import/csv', 'Dashboard\ProductController@import_csv')->middleware('auth:admins');
      Route::resource('events', 'Dashboard\EventController')->middleware('auth:admins');
-//     Route::post('events/ticket/{id}', 'Dashboard\EventController@ticket')->name('events.ticket')->middleware('auth:admins');
-//     Route::post('/events/ticket/{id}', 'Dashboard\TicketController@index')->middleware('auth:admins');
-//     Route::get('/events/tickets', 'Dashboard\TicketController@index');
      Route::resource('tickets', 'Dashboard\TicketController')->middleware('auth:admins');
+     Route::resource('mailstands', 'Dashboard\MailStandController')->middleware('auth:admins');
 });
+
+Route::get('/tasks', function () {
+     return view('task');
+ });
 
 Auth::routes();
 

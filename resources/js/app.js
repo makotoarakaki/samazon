@@ -13,4 +13,5 @@ require('./bootstrap');
  */
 
 //require('./components/index');
-require('./components/Ticket');
+require('./components/Task');
+require('./components/MailStand');

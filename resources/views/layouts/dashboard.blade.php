@@ -41,6 +41,16 @@
            @endauth
             <div class="col">
                 <main class="py-4 mb-5">
+                    <script>
+                        window.onload = function() {
+                            const spinner = document.getElementById('loading');
+                            spinner.classList.add('loaded');
+                        }            
+                    </script>
+                    <!-- ローディング画面 -->
+                    <div id="loading">
+                        <div class="spinner"></div>
+                    </div>
                     @yield('content')
                 </main>
             </div>

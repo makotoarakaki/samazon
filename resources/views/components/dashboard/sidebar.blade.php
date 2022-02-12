@@ -1,11 +1,4 @@
 <div class="container ml-3">
-    <h2>受注管理</h2>
-    <div class="d-flex flex-column">
-    <label class="samazon-sidebar-category-label">
-        <a href="/dashboard/orders">受注一覧</a>
-    </label>
-    </div>
-
     <h2>商品管理</h2>
     <div class="d-flex flex-column">
         <label class="samazon-sidebar-category-label">
@@ -32,6 +25,12 @@
     <div class="d-flex flex-column">
         <label class="samazon-sidebar-category-label">
             <a href="/dashboard/events">イベント一覧</a>
+        </label>
+    </div>
+    <h2>メール管理</h2>
+    <div class="d-flex flex-column">
+        <label class="samazon-sidebar-category-label">
+            <a href="/dashboard/mailstands">メール一覧</a>
         </label>
     </div>
 
