@@ -30,7 +30,7 @@
 
     <div class="d-flex justify-content-between w-75 mt-4">
         <h3>合計{{$total_count}}件</h3>
-
+        
         <a href="{{ route('dashboard.mailstands.create') }}" class="btn samazon-submit-button">+ 新規作成</a>
     </div>
     <div class="table-responsive">
