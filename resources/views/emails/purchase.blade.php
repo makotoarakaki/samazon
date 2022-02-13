@@ -7,7 +7,7 @@
 
 <p>{{ $subtitle }}</p>
 
-<p>{{ $comment }}</p>
+<p>{!! nl2br(htmlspecialchars($comment)) !!}</p>
 
 <p>===お申し込み内容===</p>
 

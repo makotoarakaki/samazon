@@ -6,7 +6,7 @@
 <p>{{ $name }}様</p>
 
 
-<p>{{ $comment }}</p>
+<p>{!! nl2br(htmlspecialchars($comment)) !!}</p>
 
 
 <p>━━━━━━━━━━━━━━━━━━━</p>

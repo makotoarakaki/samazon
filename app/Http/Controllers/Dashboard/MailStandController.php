@@ -71,10 +71,10 @@ class MailStandController extends Controller
         $sendmail->comment = $comment;
         if ($request->input('send') == '1') {
             $d = new DateTime();
-            $sendmail->send_datetime = $d->modify('+9 hour')->format('Y-m-d H:i:s');
+            $sendmail->send_datetime = $d->modify('+9 hour')->format('Y-m-d H:i');
         } else {
             $d = new DateTime($request->input('date').' '.$request->input('time'));
-            $sendmail->send_datetime = $d->format('Y-m-d H:i:s');
+            $sendmail->send_datetime = $d->format('Y-m-d H:i');
         }
 
         $sendmail->save(); // データ登録
@@ -144,5 +144,10 @@ class MailStandController extends Controller
         $mailStand->delete();
 
         return redirect()->route('dashboard.mailstands.index');
+    }
+
+    public function condition()
+    {
+        return view('dashboard.mailstands.conditions');
     }
 }

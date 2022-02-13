@@ -56,7 +56,7 @@
                     @endif
                 </div>
                 <div class="form-inline mt-4 mb-4 row samazon-border-comment">
-                    {{$event->comment}}
+                    {!! nl2br(htmlspecialchars($event->comment)) !!}
                 </div>
                 <div class="mt-4 mb-4 row samazon-border-comment">
                     <p>

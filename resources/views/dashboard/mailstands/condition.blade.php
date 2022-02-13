@@ -35,7 +35,7 @@
                     <br >
                     <div class="input-group">
                         <span id="jyoken">
-                            <a href="{{ route('dashboard.mailstands.conditions') }}" class="btn samazon-submit-button">条件設定</a>
+                            <a href="{{ route('dashboard.mailstands.condition') }}" class="btn samazon-submit-button">条件設定</a>
                         </span>
                     </div>
                 </li>

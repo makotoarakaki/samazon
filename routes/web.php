@@ -74,6 +74,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
      Route::resource('events', 'Dashboard\EventController')->middleware('auth:admins');
      Route::resource('tickets', 'Dashboard\TicketController')->middleware('auth:admins');
      Route::resource('mailstands', 'Dashboard\MailStandController')->middleware('auth:admins');
+     Route::get('mailstands/conditions', 'Dashboard\MailStandController@condition')->middleware('auth:admins');
 });
 
 Route::get('/tasks', function () {

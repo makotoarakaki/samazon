@@ -6,6 +6,7 @@ use DateTime;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 use App\MailStand;
+use App\User;
 use App\Mail\SendMail;
 
 class RegularEmail extends Command
@@ -42,15 +43,14 @@ class RegularEmail extends Command
     public function handle()
     {
         $d = new DateTime();
-        $now = $d->modify('+9 hour')->format('Y-m-d H:i:s');
+        $now = $d->modify('+9 hour')->format('Y-m-d H:i');
 
-        $task = MailStand::wehre('send_datetime', $now);
-dd($task);
-        if ($task) {
+        $task = MailStand::where('send_datetime','=', $now)->first();
+        if (!is_null($task)) {
             // 全ユーザー取得
             $users = User::all();
             foreach($users as $user) {
-                Mail::send(new SendMail($user->email, $user->name, 'テスト', 'テスト'));
+                Mail::send(new SendMail($user->email, $user->name, $task->title, $task->comment));
             }
         }
     }

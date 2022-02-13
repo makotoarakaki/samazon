@@ -69,7 +69,6 @@
             </tbody>
         </table>
     </div>
-
     {{ $mails->links() }}
 </div>
 @endsection
