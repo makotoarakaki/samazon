@@ -90,9 +90,6 @@ class MailStandController extends Controller
             foreach($users as $user) {
                 $sendmail->send($user->email, $user->name, $title, $comment);
             }
-
-        } else {
-
         }
 
         return redirect()->route('dashboard.mailstands.index');
