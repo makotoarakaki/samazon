@@ -156,6 +156,9 @@ class MailStandController extends Controller
         return redirect()->route('dashboard.mailstands.index');
     }
 
+    /**
+     * 
+     */
     public function condition()
     {
         $values = [];
