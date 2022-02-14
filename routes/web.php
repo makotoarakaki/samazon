@@ -73,8 +73,9 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
      Route::post('products/import/csv', 'Dashboard\ProductController@import_csv')->middleware('auth:admins');
      Route::resource('events', 'Dashboard\EventController')->middleware('auth:admins');
      Route::resource('tickets', 'Dashboard\TicketController')->middleware('auth:admins');
+     Route::get('mailstands/condition', 'Dashboard\MailStandController@condition')->name('mailstands.condition')->middleware('auth:admins');
+//     Route::get('mailstands/condition/search', 'Dashboard\MailStandController@search')->middleware('auth:admins');
      Route::resource('mailstands', 'Dashboard\MailStandController')->middleware('auth:admins');
-     Route::get('mailstands/condition', 'Dashboard\MailStandController@condition')->middleware('auth:admins');
 });
 
 Route::get('/tasks', function () {

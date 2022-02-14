@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use DateTime;
 use App\MailStand;
 use App\User;
+use App\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -101,9 +102,21 @@ class MailStandController extends Controller
      * @param  \App\MailStand  $mailStand
      * @return \Illuminate\Http\Response
      */
-    public function show(MailStand $mailStand)
+    public function show($id)
     {
-        //
+        $values = "";
+        $show = "";
+        if ($id === '1') {
+            // 登録ユーザー検索
+            $values = User::all();
+            $show = '1';
+        } else {
+            // イベントを検索
+            $values = Event::all();
+            $show = '2';
+        }
+
+        return view('dashboard.mailstands.condition', compact('values', 'show'));
     }
 
     /**
@@ -145,6 +158,9 @@ class MailStandController extends Controller
 
     public function condition()
     {
-        return view('dashboard.mailstands.conditions');
+        $values = [];
+        $show = "";
+
+        return view('dashboard.mailstands.condition', compact('values', 'show'));
     }
 }

@@ -30,12 +30,12 @@
                 <li>
                     <div class="input-group">
                         <input type="radio" class="js-check" name="user" id="user-2" value="2" onclick="formSwitch()" >
-                        <label for="user-2">条件を設定する。</label>
+                        <label for="user-2">条件を設定する</label>
                     </div>
                     <br >
                     <div class="input-group">
                         <span id="jyoken">
-                            <a href="/dashboard/mailstands/condition') }}" class="btn samazon-submit-button">条件設定</a>
+                            <a href="/dashboard/mailstands/condition" class="btn samazon-submit-button">条件設定</a>
                         </span>
                     </div>
                 </li>
@@ -78,7 +78,7 @@
             <textarea name="comment" id="mail-comment" class="form-control col-8" rows="10" required></textarea>
         </div>
         <div class="d-flex justify-content-end">
-            <button type="submit" class="w-25 btn samazon-submit-button" onclic="window.onload()" >配信</button>
+            <button type="submit" class="w-25 btn samazon-submit-button">配信</button>
         </div>
     </form>
 
