@@ -28,10 +28,12 @@
         @endcomponent
         <main class="py-4 mb-5">
             <script>
-                window.onload = function() {
-                    const spinner = document.getElementById('loading');
-                    spinner.classList.add('loaded');
-                }            
+                $(function() {
+                    $('.loadbtn').on('click', function() {
+                        $('.loadbtn').hide();
+                        $('#loading').show();
+                    });
+                });            
             </script>
             <!-- ローディング画面 -->
             <div id="loading">

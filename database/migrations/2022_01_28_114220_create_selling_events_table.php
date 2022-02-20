@@ -17,6 +17,7 @@ class CreateSellingEventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('code')->default("");
             $table->integer('price')->default(0);
+            $table->string('ticket_name')->default("");
             $table->integer('user_id');
             $table->integer('event_id');
             $table->timestamps();

@@ -18,6 +18,7 @@ class CreateMailStandsTable extends Migration
             $table->string('title');
             $table->text('comment');
             $table->datetime('send_datetime');
+            $table->integer('send')->default(0);
             $table->timestamps();
         });
     }

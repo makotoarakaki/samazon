@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\MailStand;
 use App\User;
 use App\Mail\SendMail;
+use App\SearchUser;
 
 class RegularEmail extends Command
 {
@@ -48,7 +49,12 @@ class RegularEmail extends Command
         $task = MailStand::where('send_datetime','=', $now)->first();
         if (!is_null($task)) {
             // 全ユーザー取得
-            $users = User::all();
+            if ($task->send == 2) {
+                $users = SearchUser::where('mail_stand_id', '=', $task->id)->get();
+            } else {
+                $users = User::all();
+            }
+
             foreach($users as $user) {
                 Mail::send(new SendMail($user->email, $user->name, $task->title, $task->comment));
             }

@@ -62,6 +62,7 @@ class ItemController extends Controller
         $event_id = $request->input('event_id'); // 開催日
         $price = $request->input('ticket'); // 商品料金
         $product_name = $request->input('name'.$price); // 商品名
+        dd();
 
         if(Auth::user()) {  
             return redirect()->route('items.confirm', compact('event_id', 'product_name', 'price'));
@@ -159,6 +160,7 @@ class ItemController extends Controller
         $selling = new SellingEvent();
         $selling->code = substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, 10);
         $selling->price = $price;
+        $selling->ticket_name = $request->input('product_name');
         $selling->user_id = $user->id;
         $selling->event_id = $request->input('event_id');
 

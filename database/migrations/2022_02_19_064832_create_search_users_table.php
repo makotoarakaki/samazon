@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTicketsTable extends Migration
+class CreateSearchUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateTicketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('search_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('price')->default(0);
-            $table->integer('number_sales')->default(0); //販売枚数
-            $table->integer('tax_flg')->default(0);
-            $table->integer('event_id');
+            $table->string('kana');
+            $table->string('email');
+            $table->integer('mail_stand_id');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateTicketsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('search_users');
     }
 }

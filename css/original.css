@@ -375,6 +375,11 @@ input[type="radio"] {
 
 /* ローディング */
 /* ローディング画面 */
+
+#loading {
+    display: none;
+}
+
 #loading {
   width: 100vw;
   height: 100vh;

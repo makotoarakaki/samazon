@@ -91,6 +91,14 @@ class EventController extends Controller
         $event->ntc_email1 = $request->input('ntc_email1');
         $event->ntc_email2 = $request->input('ntc_email2');
         $event->ntc_email3 = $request->input('ntc_email3');
+        $pay_m = 0;
+        if ($request->input('pay_m1') == 'on') {
+            $pay_m++;
+        }
+        if ($request->input('pay_m2') == 'on') {
+            $pay_m++;
+        }
+        $event->pay_method = $pay_m;
 
         $event->save();
 

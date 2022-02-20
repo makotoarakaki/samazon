@@ -3,12 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Event;
 
 class Ticket extends Model
 {
 
-    public function event()
+    public function events()
     {
-        return $this->hasMany('App\Event');
+        return $this->belongsTo(Author::class);
+//        return $this->hasMany('App\Event');
     }
 }

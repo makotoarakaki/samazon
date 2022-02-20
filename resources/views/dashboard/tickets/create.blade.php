@@ -48,19 +48,6 @@
                 </li>
             </ul>
         </div>
-        <div class="form-inline mt-4 mb-4 row">
-            <label for="event-period_from" class="col-2 d-flex justify-content-start">支払形式</label>
-            <div class="form-check">
-                <input type="checkbox" name="pay_m1" class="form-check-input" id="pay_m1" checked>
-                <label class="form-check-label" for="pay_m1">クレジット</label>
-            </div>
-            &nbsp;&nbsp;
-            <div class="form-check">
-                <input type="checkbox" name="pay_m2" class="form-check-input" id="pay_m2">
-                <label class="form-check-label" for="pay_m2">銀行振込</label>
-            </div>
-        </div>
-        <input type="hidden" value="{{}}">
         <div class="d-flex justify-content-end">
             <button type="submit" class="w-50 btn samazon-submit-button">作成する</button>
         </div>

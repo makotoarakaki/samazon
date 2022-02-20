@@ -41,6 +41,20 @@
                 </li>
             </ul>
         </div>
+        @if(!empty($event))
+        <div class="form-inline mt-4 mb-4 row">
+            <label for="event-title" class="col-2 d-flex justify-content-start">イベント</label>
+            <span class="form-control">{{$event->title}}</span>
+            <input type="hidden" name="event_id" value="{{$event->id}}">
+        </div>
+        <div class="form-inline mt-4 mb-4 row">
+            <label for="tickets" class="col-2 d-flex justify-content-start">チケット</label>
+            @foreach($tickets as $ticket)
+                <span class="form-control">{{$ticket->name}}</span>
+                <input type="hidden" name="ticket_name[]" value="{{$ticket->name}}">
+            @endforeach
+        </div>
+        @endif
         <div class="form-inline mt-4 mb-4 row">
             <label for="ticket-tax" class="col-2 d-flex justify-content-start align-self-start">配信日時</label>
             <ul class="radios">
@@ -78,7 +92,7 @@
             <textarea name="comment" id="mail-comment" class="form-control col-8" rows="10" required></textarea>
         </div>
         <div class="d-flex justify-content-end">
-            <button type="submit" class="w-25 btn samazon-submit-button">配信</button>
+            <button type="submit" class="w-25 btn samazon-submit-button loadbtn">配信</button>
         </div>
     </form>
 

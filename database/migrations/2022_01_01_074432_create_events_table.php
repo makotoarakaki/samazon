@@ -24,7 +24,8 @@ class CreateEventsTable extends Migration
             $table->time('event_time_to');// 開催時間終了
             $table->text('venue');// 会場
             $table->string('administrator');// 運営者
-            $table->string('ntc_email');
+            $table->integer('pay_method')->default(0);  // 0:なし 1:クレジット 2:銀行振込 4:両方
+            $table->string('ntc_email')->nullable();
             $table->string('ntc_email2')->nullable();
             $table->string('ntc_email3')->nullable();
             $table->timestamps();

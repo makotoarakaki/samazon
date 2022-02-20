@@ -80,7 +80,7 @@
                     </div>
                 @else
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="w-50 btn samazon-submit-button">商品を購入する</button>
+                        <button type="submit" class="w-50 btn samazon-submit-button loadbtn" >商品を購入する</button>
                     </div>
                 @endif
             </form>

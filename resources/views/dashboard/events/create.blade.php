@@ -66,7 +66,7 @@
         </div>
         <div class="form-inline mt-4 mb-4 row">
             <label for="event-venue" class="col-2 d-flex justify-content-start align-self-start">イベント場所</label>
-            <textarea name="venue" id="event-venue" class="form-control col-8" rows="10"></textarea>
+            <textarea name="venue" id="event-venue" class="form-control col-8" rows="2"></textarea>
         </div>
         <div class="form-inline mt-4 mb-4 row">
             <label for="event-administrator" class="col-2 d-flex justify-content-start">講師名</label>
@@ -91,6 +91,18 @@
                 <label class="form-check-label" for="check1a">後日メールで商品やメッセージを送る</label>
             </div>
         </div> -->
+        <div class="form-inline mt-4 mb-4 row">
+            <label for="event-period_from" class="col-2 d-flex justify-content-start">支払形式</label>
+            <div class="form-check">
+                <input type="checkbox" name="pay_m1" class="form-check-input" id="pay_m1" checked>
+                <label class="form-check-label" for="pay_m1">クレジット</label>
+            </div>
+            &nbsp;&nbsp;
+            <div class="form-check">
+                <input type="checkbox" name="pay_m2" class="form-check-input" id="pay_m2">
+                <label class="form-check-label" for="pay_m2">銀行振込</label>
+            </div>
+        </div>
         <div class="d-flex justify-content-end">
             <button type="submit" class="w-50 btn samazon-submit-button">チケットを作成する</button>
         </div>

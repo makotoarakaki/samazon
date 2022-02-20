@@ -20,12 +20,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/original.css')}}" rel="stylesheet">
-
+    <!-- multiselect CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+ 
     <!-- datepicker -->
     <!-- Tempus Dominus CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0/css/tempusdominus-bootstrap-4.min.css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
 
 </head>
 <body>
@@ -42,10 +45,12 @@
             <div class="col">
                 <main class="py-4 mb-5">
                     <script>
-                        window.onload = function() {
-                            const spinner = document.getElementById('loading');
-                            spinner.classList.add('loaded');
-                        }            
+                        $(function() {
+                            $('.loadbtn').on('click', function() {
+                                $('.loadbtn').hide();
+                                $('#loading').show();
+                            });
+                        });            
                     </script>
                     <!-- ローディング画面 -->
                     <div id="loading">

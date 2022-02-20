@@ -36,7 +36,7 @@
                     @foreach($tickets as $ticket)
                     <tr>
                         <td>{{ $ticket->name }}</td>
-                        <td>{{ $ticket->price }}</td>
+                        <td>{{ number_format($ticket->price) }}</td>
                         <td>
                             <a href="/dashboard/tickets/{{ $ticket->id }}/edit" class="dashboard-edit-link">編集</a>
                         </td>
