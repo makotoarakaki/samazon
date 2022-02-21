@@ -62,6 +62,7 @@ class MailStandController extends Controller
         // イベント取得
         $event = Event::where('id', '=', $event_id)->first();
 
+        $tickets = array();
         if(!is_null($tickets_id)) {
             $tickets = array();
             foreach($tickets_id as $val) {
