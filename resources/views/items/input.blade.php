@@ -59,6 +59,7 @@
                 <input type="hidden" name="event_id" value="{{ $event_id }}"> 
                 <input type="hidden" name="product_name" value="{{ $product_name }}">
                 <input type="hidden" name="price" value="{{ $price }}">
+                <input type="hidden" name="pay_method" value="{{ $pay_method }}">
             </form>
             <br/>
             <hr/>
@@ -148,6 +149,7 @@
                 <input type="hidden" name="event_id" value="{{ $event_id }}"> 
                 <input type="hidden" name="product_name" value="{{ $product_name }}">
                 <input type="hidden" name="price" value="{{ $price }}">
+                <input type="hidden" name="pay_method" value="{{ $pay_method }}">
 
                 <hr />
                 <div class="d-flex justify-content-center">

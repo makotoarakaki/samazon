@@ -60,24 +60,27 @@ class ItemRegisterController extends Controller
 
     public function register(Request $request)
     {
-
         $event_id = $request->input('event_id');
         $product_name = $request->input('product_name');
         $price = $request->input('price');
+        $pay_method = $request->input('pay_method'); // 支払い方法
 
         // パスワード桁数チェック
         if (strlen($request->input('password')) < 8) {
             $error = 'パスワードは８桁以上で入力して下さい。';
-            return view('items.input', compact('event_id', 'product_name', 'price', 'error'));
+            return view('items.input', compact('event_id', 'product_name', 'price', 'pay_method', 'error'));
         }
         // 登録ユーザーチェック
+        $email = $request->email;
         $user = "";
+        $user = User::where('email', '=', $email)->first();
         if (Auth::user()) {
             $user = User::find(Auth::user()->id);
         }
+//dd($user);
         if(!empty($user)) {
             $error = 'このメールアドレスは既に登録されています。「購入経験がある方はこちら」よりログインをお願いします。';
-            return view('items.input', compact('event_id', 'product_name', 'price', 'error'));
+            return view('items.input', compact('event_id', 'product_name', 'price', 'pay_method', 'error'));
         }
 
         $user = new User;
@@ -86,7 +89,7 @@ class ItemRegisterController extends Controller
     
         $this->guard()->login($user);
 
-        return view('items.confirm', compact('event_id', 'product_name', 'price'));
+        return view('items.confirm', compact('event_id', 'product_name', 'price', 'pay_method'));
     }
 
     /**

@@ -46,7 +46,7 @@ class ItemController extends Controller
             'etime_from' => $event_time_from, 
             'etime_to' => $event_time_to, 
             'venue' => $event->venue, 
-            'administrator' => $event->administrator
+            'administrator' => $event->administrator,
         ];
 
         return view('items.create', compact('detail', 'event', 'tickets'));
@@ -62,12 +62,12 @@ class ItemController extends Controller
         $event_id = $request->input('event_id'); // 開催日
         $price = $request->input('ticket'); // 商品料金
         $product_name = $request->input('name'.$price); // 商品名
-        dd();
+        $pay_method = $request->input('pay_method'); // 支払い方法
 
         if(Auth::user()) {  
-            return redirect()->route('items.confirm', compact('event_id', 'product_name', 'price'));
+            return redirect()->route('items.confirm', compact('event_id', 'product_name', 'price', 'pay_method'));
         }
-        return view('items.input', compact('event_id', 'price', 'product_name'));
+        return view('items.input', compact('event_id', 'product_name', 'price', 'pay_method'));
     }
 
     /**
@@ -83,7 +83,6 @@ class ItemController extends Controller
 
     public function confirm(Request $request)
     {
-//        dd($request);
         $token = "";
         if (Auth::user()) {
             $user = User::find(Auth::user()->id);
@@ -107,13 +106,15 @@ class ItemController extends Controller
                  'last4' => $result["last4"] 
              ];
 
-            }
+        }
 
-            $event_id = $request->input('event_id'); // 開催日
-            $product_name = $request->input('product_name'); // 開催日
-            $price = $request->input('price');
+        $event_id = $request->input('event_id'); // 開催日
+        $product_name = $request->input('product_name'); // 開催日
+        $price = $request->input('price');
+        $pay_method = $request->input('pay_method'); // 支払い方法
+
  
-        return view('items.confirm', compact('card', 'count', 'event_id', 'product_name', 'price'));
+        return view('items.confirm', compact('card', 'count', 'event_id', 'product_name', 'price', 'pay_method'));
      }
 
      public function token(Request $request)
@@ -142,8 +143,9 @@ class ItemController extends Controller
          $event_id = $request->input('event_id');
          $product_name = $request->input('product_name');
          $price = $request->input('price');
+         $pay_method = $request->input('pay_method'); // 支払い方法
 
-         return redirect()->route('items.confirm', compact('event_id', 'product_name', 'price'));
+         return redirect()->route('items.confirm', compact('event_id', 'product_name', 'price', 'pay_method'));
     }
 
     /**
@@ -166,19 +168,24 @@ class ItemController extends Controller
 
         $selling->save();
 
-        $pay_jp_secret = env('PAYJP_SECRET_KEY');
-        \Payjp\Payjp::setApiKey($pay_jp_secret);
- 
-        if(empty($user->token)) {
-            return redirect()->route('mypage.register_card');
+        $pay_method = $request->input('pay_method'); // 支払い方法
+
+        if($pay_method === '1') {
+            $pay_jp_secret = env('PAYJP_SECRET_KEY');
+            \Payjp\Payjp::setApiKey($pay_jp_secret);
+     
+            if(empty($user->token)) {
+                return redirect()->route('items.confirm');
+            }
+            $res = \Payjp\Charge::create(
+                [
+                    "customer" => $user->token,
+                    "amount" => $price,
+                    "currency" => 'jpy'
+                ]
+            );    
         }
-        $res = \Payjp\Charge::create(
-            [
-                "customer" => $user->token,
-                "amount" => $price,
-                "currency" => 'jpy'
-            ]
-        );
+
  
          // データを取得
          $event_id = $request->input('event_id');
@@ -189,7 +196,7 @@ class ItemController extends Controller
 
         // お客様への購入メール送信
         $purchase_mail = app()->make('App\Http\Controllers\PurchaseMailController');
-        $purchase_mail->purchas($event, $product_name, $price);
+        $purchase_mail->purchas($event, $product_name, $price, $pay_method, $selling->code);
 
         // 購入後のページへ移動
         return view('items.completion');

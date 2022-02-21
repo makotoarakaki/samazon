@@ -9,12 +9,26 @@ use Illuminate\Http\Request;
 
 class PurchaseMailController extends Controller
 {
-    public function purchas(Event $event, $product_name, $price) {
+    public function purchas(Event $event, $product_name, $price, $pay_method, $code) {
 
         // データベースより値を取得
         $this->title = $event->title;
         $subtitle = 'この度は、『'.$this->title.'にお申し込みいただきありがとうございます。』';
         $this->comment = $event->comment;
+
+        $bank_info = "";
+        if ($pay_method === '2') {
+            $bank_info = "お振込時にお手数ですが下記のコードをお振込名義の前にご記入をお願い致します。\n";
+            $bank_info .= $code."\n";
+            $bank_info .= "記入例：".$code."山田 太郎\n";
+            $bank_info .= "お振込先：\n";
+            $bank_info .= "〇〇銀行\n";
+            $bank_info .= "〇〇支店\n";
+            $bank_info .= "普通：12345678\n";
+            $bank_info .= "株式会社NARU\n";
+        } else {
+            $bank_info = "クレジット決済";
+        }
 
         // イベント日をフォーマット変換
         $edate = date_create($event->event_date);
@@ -56,7 +70,8 @@ class PurchaseMailController extends Controller
                                     $this->venue, 
                                     $this->administrator,
                                     $this->product_name,
-                                    $this->price
+                                    $this->price,
+                                    $bank_info
                 ));
     }
 }

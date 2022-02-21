@@ -81,6 +81,18 @@
             <label for="event-administrator" class="col-2 d-flex justify-content-start">講師名</label>
             <input type="text" name="administrator" id="event-administrator" class="form-control col-8" value="{{ $event->administrator }}">
         </div>
+        <div class="form-inline mt-4 mb-4 row">
+            <label for="event-period_from" class="col-2 d-flex justify-content-start">支払形式</label>
+            <div class="form-check">
+                <input type="checkbox" name="pay_m1" class="form-check-input" id="pay_m1" {{ $event->pay_method == 1 || $event->pay_method == 3 ? 'checked' : '' }}>
+                <label class="form-check-label" for="pay_m1">クレジット</label>
+            </div>
+            &nbsp;&nbsp;
+            <div class="form-check">
+                <input type="checkbox" name="pay_m2" class="form-check-input" id="pay_m2" {{ $event->pay_method == 2 || $event->pay_method == 3 ? 'checked' : '' }}>
+                <label class="form-check-label" for="pay_m2">銀行振込</label>
+            </div>
+        </div>
         <!-- <div class="form-inline mt-4 mb-4 row">
             <label for="event-ntc_email1" class="col-2 d-flex justify-content-start">通知先</label>
             <input type="text" name="ntc_email1" id="event-ntc_email1" class="form-control col-8" value="{{ $event->ntc_email1 }}" placeholder="aaa@gmail.com">

@@ -42,7 +42,8 @@
             @endif
                 <div class="form-inline mt-4 mb-4 row samazon-border-comment">
                         {{$product_name}}&nbsp;：&nbsp;{{number_format($price)}}円（税込）
-                </div>                
+                </div>
+                @if($pay_method === '1')              
                 <div class="d-flex justify-content-center">
                     <div class="container w-50">
                         @if (!empty($card))
@@ -64,9 +65,11 @@
                             <input type="hidden" name="event_id" value="{{ $event_id }}"> 
                             <input type="hidden" name="product_name" value="{{ $product_name }}"> 
                             <input type="hidden" name="price" value="{{ $price }}">
+                            <input type="hidden" name="pay_method" value="{{ $pay_method }}">
                         </form>
                     </div>
                 </div>
+                @endif
 
                 <hr />
             <form method="POST" action="/items/store" class="mb-5" enctype="multipart/form-data">
@@ -74,7 +77,8 @@
                 <input type="hidden" name="event_id" value="{{ $event_id }}"> 
                 <input type="hidden" name="product_name" value="{{ $product_name }}"> 
                 <input type="hidden" name="price" value="{{ $price }}">
-                @if (empty($card))
+                <input type="hidden" name="pay_method" value="{{ $pay_method }}">
+                @if (empty($card) && $pay_method !== '2')
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="w-50 btn btn-secondary" disabled>商品を購入する</button>
                     </div>

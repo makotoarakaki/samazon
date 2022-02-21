@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -45,8 +44,9 @@ class ItemLoginController extends Controller
         $event_id = $request->input('event_id');
         $product_name = $request->input('product_name');
         $price = $request->input('price');
+        $pay_method = $request->input('pay_method'); // 支払い方法
 
-        return view('auth.item_login', compact('event_id', 'product_name', 'price'));
+        return view('auth.item_login', compact('event_id', 'product_name', 'price', 'pay_method'));
     }
 
     public function login(Request $request)
@@ -54,6 +54,7 @@ class ItemLoginController extends Controller
         $event_id = $request->input('event_id');
         $product_name = $request->input('product_name');
         $price = $request->input('price');
+        $pay_method = $request->input('pay_method'); // 支払い方法
 
         $this->validate($request,[
             'email' => 'email|required',
@@ -61,7 +62,7 @@ class ItemLoginController extends Controller
         ]);
            
         if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])){
-            return redirect()->route('items.confirm', compact('event_id', 'product_name', 'price'));
+            return redirect()->route('items.confirm', compact('event_id', 'product_name', 'price', 'pay_method'));
         }
         return redirect()->back();
     }

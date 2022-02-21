@@ -97,6 +97,34 @@
                 </div>  
                 <input type="hidden" name="event_id" value="{{ $event->id }}"> 
 
+                <div class="mt-4 mb-4 row samazon-border-comment">
+                    <label for="radios" class="col-md-5 col-form-label text-md-left">お支払い方法<span class="ml-1 samazon-label-label"></label>
+                    <ul class="radios">
+                        @if ($event->pay_method === 1)
+                        <li>
+                            <input type="radio" name="pay_method" id="pay_method1" value="1" checked>
+                            <label for="pay_method1">クレジット</label>
+                        </li>
+                        @endif
+                        @if ($event->pay_method === 2)
+                        <li>
+                            <input type="radio" name="pay_method" id="pay_method2" value="2" checked>
+                            <label for="pay_method2">銀行振込</label>
+                        </li>
+                        @endif
+                        @if ($event->pay_method === 3)
+                        <li>
+                            <input type="radio" name="pay_method" id="pay_method1" value="1" checked>
+                            <label for="pay_method1">クレジット</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="pay_method" id="pay_method2" value="2">
+                            <label for="pay_method2">銀行振込</label>
+                        </li>
+                        @endif
+                    </ul>
+                </div>  
+ 
                 <hr />
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="w-50 btn samazon-submit-button">次へ（お客様情報入力）</button>

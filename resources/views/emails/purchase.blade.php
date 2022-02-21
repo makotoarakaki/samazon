@@ -27,6 +27,8 @@
 
 <p>■{{ number_format($price) }}円</p>
 
+<p>{!! nl2br(htmlspecialchars($bank_info)) !!}</p>
+
 <p>━━━━━━━━主催━━━━━━━━━</p>
 
 <p>株式会社NARU　水江卓也</p>

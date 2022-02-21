@@ -16,7 +16,7 @@ class PurchaseMail extends Mailable
      *
      * @return void
      */
-    public function __construct($title, $subtitle, $comment, $event_date, $venue, $administrator, $product_name, $price)
+    public function __construct($title, $subtitle, $comment, $event_date, $venue, $administrator, $product_name, $price, $bank_info)
     {
         $this->title = $title;
         $this->subtitle = $subtitle;
@@ -26,6 +26,7 @@ class PurchaseMail extends Mailable
         $this->administrator = $administrator;
         $this->product_name = $product_name;
         $this->price = $price;
+        $this->bank_info = $bank_info;
     }
 
     /**
@@ -53,7 +54,8 @@ class PurchaseMail extends Mailable
                             'venue' => $this->venue, 
                             'administrator' => $this->administrator, 
                             'product_name' => $this->product_name, 
-                            'price' => $this->price, 
+                            'price' => $this->price,
+                            'bank_info' => $this->bank_info,
                         ]
                     )
                     ->subject($this->title.'のお申し込みありがとうございます。');
