@@ -160,7 +160,7 @@ class ItemController extends Controller
         $price = $request->input('price');
 
         $selling = new SellingEvent();
-        $selling->code = substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, 10);
+        $selling->code = substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, 6);
         $selling->price = $price;
         $selling->ticket_name = $request->input('product_name');
         $selling->user_id = $user->id;

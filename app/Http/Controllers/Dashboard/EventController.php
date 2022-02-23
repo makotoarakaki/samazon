@@ -88,9 +88,9 @@ class EventController extends Controller
         $event->event_time_to = $request->input('event_time_to');
         $event->venue = $request->input('venue');
         $event->administrator = $request->input('administrator');
-        $event->ntc_email1 = $request->input('ntc_email1');
-        $event->ntc_email2 = $request->input('ntc_email2');
-        $event->ntc_email3 = $request->input('ntc_email3');
+        // $event->ntc_email1 = $request->input('ntc_email1');
+        // $event->ntc_email2 = $request->input('ntc_email2');
+        // $event->ntc_email3 = $request->input('ntc_email3');
         $pay_m = 0;
         if ($request->input('pay_m1') == 'on') {
             $pay_m = 1;

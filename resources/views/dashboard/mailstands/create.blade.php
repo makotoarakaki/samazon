@@ -4,6 +4,13 @@
 <div class="w-50">
     <h1>メール登録</h1>
 
+    @if (isset($error))
+        <div class="alert alert-danger">
+            <ul>
+                <li>{{ $error }}</li>
+            </ul>
+        </div>
+    @endif
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

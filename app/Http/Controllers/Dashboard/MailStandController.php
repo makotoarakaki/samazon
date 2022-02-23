@@ -109,8 +109,13 @@ class MailStandController extends Controller
             $users_id = SellingEvent::where('event_id', '=', $event_id)
                 ->whereIn('ticket_name', $ticket_names)->get('user_id');
             // ユーザーIDを配列にする
+            $id_array = array();
             foreach($users_id as $val) {
                 $id_array[] = $val->user_id;
+            }
+            if (empty($id_array)) {
+                $error = '対象のユーザーがいませんでした。';
+                return view('dashboard.mailstands.create', compact('error'));
             }
 
             // ユーザー情報取得
