@@ -76,6 +76,9 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
      Route::get('mailstands/condition', 'Dashboard\MailStandController@condition')->name('mailstands.condition')->middleware('auth:admins');
      Route::post('mailstands/create', 'Dashboard\MailStandController@create')->middleware('auth:admins');
      Route::resource('mailstands', 'Dashboard\MailStandController')->middleware('auth:admins');
+     Route::resource('tokuteis', 'Dashboard\TokuteiController')->middleware('auth:admins');
+     // Route::get('tokuteis/{id}/edit', 'Dashboard\TokuteiController@edit')->middleware('auth:admins');
+     // Route::post('tokuteis/{id}', 'Dashboard\TokuteiController@show')->middleware('auth:admins');
 });
 
 Route::get('/tasks', function () {

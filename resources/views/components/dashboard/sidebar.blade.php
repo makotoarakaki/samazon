@@ -36,6 +36,9 @@
 
     <h2>その他</h2>
     <div class="d-flex flex-column">
+        <label class="samazon-sidebar-category-label">
+            <a href="/dashboard/tokuteis/1/edit">特定商取引法</a>
+        </label>
         <label class="samazon-sidebar-category-label">新着情報管理</label>
         <label class="samazon-sidebar-category-label">管理ユーザー管理</label>
     </div>

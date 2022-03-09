@@ -66,6 +66,7 @@ return array(
     'App\\SellingEvent' => $baseDir . '/app/SellingEvent.php',
     'App\\ShoppingCart' => $baseDir . '/app/ShoppingCart.php',
     'App\\Ticket' => $baseDir . '/app/Ticket.php',
+    'App\\Tokutei' => $baseDir . '/app/Tokutei.php',
     'App\\User' => $baseDir . '/app/User.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'BeyondCode\\DumpServer\\DumpServerCommand' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',

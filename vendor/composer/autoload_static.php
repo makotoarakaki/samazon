@@ -551,6 +551,7 @@ class ComposerStaticInitb6d8025872988c131e58c99b5a80f4f4
         'App\\SellingEvent' => __DIR__ . '/../..' . '/app/SellingEvent.php',
         'App\\ShoppingCart' => __DIR__ . '/../..' . '/app/ShoppingCart.php',
         'App\\Ticket' => __DIR__ . '/../..' . '/app/Ticket.php',
+        'App\\Tokutei' => __DIR__ . '/../..' . '/app/Tokutei.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
