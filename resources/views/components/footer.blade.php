@@ -3,6 +3,6 @@
         {{ config('app.name', 'Laravel') }}
     </a>
     <label class="navbar-brand mx-auto">
-            <a href="/dashboard/tokuteis/1">特定商取引法</a>
+            <a href="{{ route('tokuteis.tokutei', ['id' => 1]) }}">特定商取引法</a>
     </label>
 </nav>

@@ -61,6 +61,8 @@ Route::post('items/store', 'ItemController@store');
 
 //Route::get('/tickets/{id}', 'Api\TicketController@index');
 
+Route::get('tokuteis/{id}/tokutei', 'Dashboard\TokuteiController@show')->name('tokuteis.tokutei');;
+
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
      Route::get('login', 'Dashboard\Auth\LoginController@showLoginForm')->name('login');
      Route::post('login', 'Dashboard\Auth\LoginController@login')->name('login');
