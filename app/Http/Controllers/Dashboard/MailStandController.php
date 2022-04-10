@@ -96,6 +96,9 @@ class MailStandController extends Controller
         if ($request->input('send') == '2') {
             $sendmail->send = 2;
         }
+        if ($request->input('user') == '2') {
+            $sendmail->send = 3;
+        }
 
         $sendmail->save(); // データ登録
 
