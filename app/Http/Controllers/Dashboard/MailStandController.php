@@ -96,7 +96,10 @@ class MailStandController extends Controller
         if ($request->input('send') == '2') {
             $sendmail->send = 2;
         }
-        if ($request->input('user') == '2') {
+
+        $event_id = $request->input('event_id');
+        $ticket_names = $request->input('ticket_name');
+        if (!is_null($event_id)) {
             $sendmail->send = 3;
         }
 
@@ -105,8 +108,6 @@ class MailStandController extends Controller
         /**
          * 条件設定がある場合
          */
-        $event_id = $request->input('event_id');
-        $ticket_names = $request->input('ticket_name');
  
         if(!is_null($event_id)) {
             $users_id = SellingEvent::where('event_id', '=', $event_id)
