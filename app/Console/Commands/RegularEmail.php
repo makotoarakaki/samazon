@@ -54,8 +54,6 @@ class RegularEmail extends Command
             } else {
                 $users = User::all();
             }
-dd($users);
-
             foreach($users as $user) {
                 Mail::send(new SendMail($user->email, $user->name, $task->title, $task->comment));
             }
