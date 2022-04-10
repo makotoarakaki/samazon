@@ -215,7 +215,6 @@ class MailStandController extends Controller
      */
     public function destroy(MailStand $mailStand)
     {
-        dd($mailStand);
         $mailStand->delete();
 
         return redirect()->route('dashboard.mailstands.index');
