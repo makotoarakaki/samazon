@@ -47,7 +47,7 @@ class RegularEmail extends Command
         $now = $d->modify('+9 hour')->format('Y-m-d H:i');
 
         $task = MailStand::where('send_datetime','=', $now)->first();
-dd($task, $task->send);
+dd($task);
         if (!is_null($task)) {
             // 全ユーザー取得
             if ($task->send == 2) {
