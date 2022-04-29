@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Event;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PurchaseMail;
-use Illuminate\Http\Request;
 
 class PurchaseMailController extends Controller
 {
@@ -14,7 +13,6 @@ class PurchaseMailController extends Controller
         // データベースより値を取得
         $this->title = $event->title;
         $subtitle = 'この度は、『'.$this->title.'にお申し込みいただきありがとうございます。』';
-        $this->comment = $event->comment;
 
         $bank_info = "";
         if ($pay_method === '2') {
@@ -63,11 +61,10 @@ class PurchaseMailController extends Controller
         // 料金
         $this->price = $price;
 
-        Mail::send(new PurchaseMail($this->title, 
-                                    $subtitle, 
-                                    $this->comment, 
+        Mail::send(new PurchaseMail($this->title,
+                                    $subtitle,
                                     $this->event_date, 
-                                    $this->venue, 
+                                    $this->venue,
                                     $this->administrator,
                                     $this->product_name,
                                     $this->price,

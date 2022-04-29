@@ -7,8 +7,6 @@
 
 <p>{{ $subtitle }}</p>
 
-<p>{!! nl2br(htmlspecialchars($comment)) !!}</p>
-
 <p>===お申し込み内容===</p>
 
 <p>{{ $title }}</p>
@@ -31,12 +29,10 @@
 
 <p>━━━━━━━━主催━━━━━━━━━</p>
 
-<p>株式会社NARU　水江卓也</p>
+<p>マコトクリエイション　新垣誠</p>
 
-<p>〒562-0011</p>
-<p>大阪府箕面市如意谷1-2-3</p>
-<p>info@naru.pics</p>
-<p>http://naru-mvp.com/</p>
-
+<p>〒901-1116</p>
+<p>沖縄県島尻郡南風原町照屋２４８−１７ Karii201</p>
+<p>arakakiconsul@gmail.com</p>
 <p>━━━━━━━━━━━━━━━━━━━ </p>
 
