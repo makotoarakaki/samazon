@@ -13,6 +13,8 @@
 
 <p>＜詳細＞</p>
 
+<p>{!! nl2br(htmlspecialchars($content)) !!}</p>
+
 <p>日時：{{ $event_date }}</p>
 
 <p>会場：{{ $venue }}</p>
@@ -27,14 +29,14 @@
 
 <p>{!! nl2br(htmlspecialchars($bank_info)) !!}</p>
 
-<p>━━━━━━━━主催━━━━━━━━━</p>
+<p>━━━━━━━━━━━━━━━━━</p>
 
-<p>株式会社NARU　水江卓也</p>
+<p>マコトクリエイション　新垣誠</p>
 
-<p>〒112-0011</p>
-<p>東京都文京区千石4-5-9</p>
-<p>info@naru.pics</p>
-<p>http://naru-mvp.com/</p>
+<p>〒901-1116</p>
 
-<p>━━━━━━━━━━━━━━━━━━━ </p>
+<p>沖縄県島尻郡南風原町照屋２４８−１７ Karii201</p>
 
+<p>arakakiconsul@gmail.com</p>
+
+<p>━━━━━━━━━━━━━━━━━</p>
